@@ -8,6 +8,10 @@ export async function getAllProducts() {
   let products=await productModel.find({},{__v: 0})
   return products;
 }
+export async function getProduct(id) {
+  let product=await productModel.findById(id).select('-__v');
+  return product;
+}
 //PAGINATION
 export async function getProducts(page=1,limit=5) {
   let products=await productModel.find({},{__v: 0}).skip(limit*(page-1)).limit(limit)
