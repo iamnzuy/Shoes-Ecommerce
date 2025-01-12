@@ -9,11 +9,11 @@ function Header(){
             <div className="flex flex-row justify-between">
                 <div>Logo</div>
                 <nav className="">
-                    <NavLink to="/client" className="mx-2">Home</NavLink>
-                    <NavLink to="/client/products" className="mx-2">Products</NavLink>
-                    <NavLink to="/client/contact" className="mx-2">Contact</NavLink>
-                    <NavLink to="/client/cart" className="mx-2">Cart</NavLink>
-                    <NavLink to="/login" className="mx-2">Login</NavLink>
+                    <NavLink to="/client" className="mx-2 text-xl font-medium">Home</NavLink>
+                    <NavLink to="/client/products" className="mx-2  text-xl font-medium">Products</NavLink>
+                    <NavLink to="/client/contact" className="mx-2 text-xl font-medium">Contact</NavLink>
+                    <NavLink to="/client/cart" className="mx-2 text-xl font-medium">Cart</NavLink>
+                    <NavLink to="/login" className="mx-2 text-xl font-medium">Login</NavLink>
                 </nav>
             </div>
         </header>
