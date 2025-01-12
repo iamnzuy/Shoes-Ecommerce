@@ -22,7 +22,7 @@ function BreadCrumb(){
 
 
     return (
-        <div className="mx-8 my-2">{crumbs}</div>
+        <div className="mx-8 my-4">{crumbs}</div>
     )
 }
 
