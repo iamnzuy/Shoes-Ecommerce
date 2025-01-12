@@ -17,6 +17,13 @@ let productSchema=new mongoose.Schema({
         type: String,
         required: true,
         minlength: 20
-    }
+    },
+    brand: {
+        type: String,
+        required: true,
+    },
+    model: {
+        type: String
+    },
 },{timestamps: true})
 export const productModel= mongoose.model('Products', productSchema);
