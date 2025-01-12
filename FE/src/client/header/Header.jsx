@@ -5,7 +5,7 @@ import { NavLink, Link } from "react-router"
 
 function Header(){
     return (
-        <header className="sticky top-0 bg-white inline-block py-2 my-2">
+        <header className="sticky top-0 bg-white block py-2 my-2">
             <nav className="">
                 <NavLink>Home</NavLink>
                 <NavLink>Products</NavLink>

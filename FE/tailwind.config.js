@@ -4,9 +4,9 @@ export default {
     
       "./index.html",
       "./src/App.jsx",
-      "./src/client/product/Detail.jsx",
+      "./src/client/product/ProductDetail.jsx",
       "./src/client/header/Header.jsx",
-      "./src/client/header/BreadCrumb/BreadCrumb.jsx"
+      "./src/client/header/BreadCrumb.jsx"
   ],
   theme: {
     extend: {},

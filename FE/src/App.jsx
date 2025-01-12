@@ -1,15 +1,11 @@
-import { useState } from 'react'
-import Detail from './client/product/Detail.jsx'
-
+import "./App.css";
+import { createBrowserRouter, RouterProvider, Link } from "react-router";
+// import adminRoutes from "./components/PageAdmin/admin_routes";
+import clientRoutes from "./client/client_routes";
+const router = createBrowserRouter([clientRoutes]);
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-     
-    </>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
