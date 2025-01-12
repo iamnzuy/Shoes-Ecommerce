@@ -1,8 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router";
-import Client from './Products/Client.jsx';
-import Show from './Products/Show.jsx'
-import ProductDetail from './Products/ProductDetail.jsx';
+import Client from './product/Client.jsx';
+import Show from './product/Show.jsx'
+import ProductDetail from './product/ProductDetail.jsx';
 
 
 const clientRoutes = {
@@ -15,21 +15,3 @@ const clientRoutes = {
   };
 
 export default clientRoutes;
-
-// createRoot(document.getElementById('root')).render(
- 
-//   <BrowserRouter>
-//     <Routes>
-//       <Route path="/" element={<App />} >
-//       </Route>
-
-//       <Route path="products">
-//           <Route index element={<Show />} />
-//           <Route path=":pid" element={<Detail />} />
-//       </Route> 
-      
-//     </Routes>
-    
-//   </BrowserRouter>
- 
-// )
