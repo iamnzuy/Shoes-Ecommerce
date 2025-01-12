@@ -133,18 +133,15 @@ function ProductCreate() {
               </svg>
 
               <div className="flex flex-col justify-center items-center">
-                <label
-                  htmlFor="imageUpload"
-                  className="text-blue-700 cursor-pointer"
-                >
+                <label htmlFor="image" className="text-blue-700 cursor-pointer">
                   Upload an image
                 </label>
-                <p className="text-xs text-gray-600">PNG, JPG, JPEG </p>
+                <p className="text-xs text-gray-600">PNG, JPG </p>
               </div>
 
               <input
-                name="productImage"
-                id="imageUpload"
+                name="image"
+                id="image"
                 type="file"
                 className="sr-only"
                 onChange={handleImageChange}
