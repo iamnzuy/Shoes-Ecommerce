@@ -1,9 +1,7 @@
-import Header from "../header/Header.jsx";
-import BreadCrumb from "../header/BreadCrumb.jsx";
-import { Outlet } from "react-router";
-
+import Header from "../header/Header"
+import BreadCrumb from "../header/BreadCrumb"
+import { Outlet } from "react-router"
 function Client(){
-
     return (
         <>
             <Header />

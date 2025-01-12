@@ -1,0 +1,96 @@
+.company_name
+{
+    margin-right: auto;
+    color:rgb(239, 83, 42);
+}
+
+
+.Header
+{
+    
+    display: flex;
+    padding-bottom:30px;
+    padding-top: 20px;
+}
+
+.Header p
+{
+    
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.Header img{
+    height:60px;
+}
+
+.Body
+{
+    background-color: rgb(239, 83, 42);
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    background-image: url("https://down-vn.img.susercontent.com/file/sg-11134004-7rff9-m47h5vo9qfr552");
+    background-repeat: no-repeat;
+}
+
+.Body .content
+{
+    
+    width: 80%;
+}
+
+.Form
+{
+    background-color: white;
+    padding-left: 35px;
+    display: block;
+    text-align: start;
+    box-shadow: 0px 0px 21px rgba(0, 0, 0, 0.2);
+    padding-bottom: 100px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.dangnhap
+{
+    
+    margin-top: 50px; 
+    margin-bottom: 20px; 
+    font-weight: 600; 
+    font-size: 30px;
+}
+
+.btn_dangnhap{
+    
+    border: solid 1px green;
+    color: gray;
+    font-weight: 500;
+    font-size: 20px;
+    width: 93%;
+    margin-top: 10px;
+    background-color: greenyellow;
+    margin-bottom: 10px;
+}
+
+.input_username
+{
+    padding-right: 60%; 
+    margin-bottom: 20px;
+    height: 50px;
+}
+
+.input_password
+{
+    padding-right: 60%; 
+    margin-bottom: 20px;
+    height: 50px;
+}
+
+.quenmatkhau
+{
+    margin-right: 60%;
+}
+
+
+

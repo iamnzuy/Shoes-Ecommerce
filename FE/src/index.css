@@ -1,6 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+
+    .inputHighlight {
+      @apply focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1;
+    }
+    .bigBtn {
+      @apply px-4 py-3  bg-blue-600 text-white font-medium leading-5 rounded-lg transition-all border border-transparent active:bg-blue-600 hover:bg-blue-700;
+    }
+    .highlight {
+      box-shadow: -19px 0px 0px 0px rgba(18, 18, 211, 0.75);
+      color: #1f2937;
+    }
+    .card {
+      @apply flex items-center p-4 bg-white rounded-lg shadow-lg transition-transform duration-200 transform hover:scale-105;
+    }
+    td {
+      text-align: center;
+    }
+}
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
 @layer base {
   .inputHighlight {
@@ -19,4 +49,4 @@
   td {
     text-align: center;
   }
-}
+} */
