@@ -21,6 +21,9 @@ let productSchema=new mongoose.Schema({
     brand: {
         type: String,
         required: true,
-    }
+    },
+    model: {
+        type: String
+    },
 },{timestamps: true})
 export const productModel= mongoose.model('Products', productSchema);
