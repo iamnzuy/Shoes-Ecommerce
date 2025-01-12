@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import axios from "axios";
 
 function Input(props) {
   return (
     <div>
-      <label htmlFor={props.name} className="text-gray-600 font-medium">
-        {props.name}
+      <label htmlFor={props.name} className="text-gray-600 font-medium text-sm">
+        {props.name.toUpperCase()}
       </label>
       <input
         type={props.type}
@@ -30,8 +31,8 @@ const brands = ["Nike", "Adidas", "Puma", "Converse"];
 function Selector(props) {
   return (
     <div>
-      <label className="block text-base font-medium leading-6 text-gray-500">
-        {props.name}
+      <label className="block text-sm font-medium leading-6 text-gray-500">
+        {props.name.toUpperCase()}
       </label>
       <select
         id={props.name}
@@ -58,23 +59,54 @@ function ProductCreate() {
       setImagePreview(imageUrl);
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = document.getElementById("productForm");
+    const formData = new FormData(form);
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/products/create",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Important for file uploads
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //
   return (
     <div className="mx-auto w-3/4">
       <h2 className="my-3 mt-6 text-2xl font-semibold text-gray-800">
         Create a new product
       </h2>
-      <form id="productForm" onSubmit={handleSubmit}>
+      <form
+        id="productForm"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
         <div className="grid grid-cols-2 gap-x-12 gap-y-6 px-24 ">
-          <div className="flex w-full col-span-2 gap-5">
-            <Input name="Name" placeholder="Product Name" type="text" />
-            <Input name="Price" placeholder="Product Price" type="number" />
-            <Input name="Quantity" placeholder="" type="number" />
-          </div>
+          <Input name="name" placeholder="Product Name" type="text" />
+          <Input name="price" placeholder="Product Price" type="number" />
           {/* description */}
           <div className="mt-2 col-span-2">
-            <label className="text-gray-600 font-medium">Description</label>
+            <label
+              htmlFor="description"
+              className="text-gray-600 font-medium text-sm"
+            >
+              DESCRIPTION
+            </label>
             <textarea
-              name="Long Description"
+              name="description"
               className="inputHighlight font-medium mt-1 px-3 py-2 bg-white border shadow-sm  border-slate-300 placeholder-slate-400 w-full rounded-md"
             ></textarea>
           </div>
@@ -82,8 +114,8 @@ function ProductCreate() {
           {/*  */}
 
           {/* selectors */}
-          <Selector name="Category" options={categories} />
-          <Selector name="Brand" options={brands} />
+          <Selector name="category" options={categories} />
+          <Selector name="brand" options={brands} />
 
           {/* image uploader */}
           <div className="sm:col-span-full mt-4">
@@ -101,18 +133,15 @@ function ProductCreate() {
               </svg>
 
               <div className="flex flex-col justify-center items-center">
-                <label
-                  htmlFor="imageUpload"
-                  className="text-blue-700 cursor-pointer"
-                >
+                <label htmlFor="image" className="text-blue-700 cursor-pointer">
                   Upload an image
                 </label>
-                <p className="text-xs text-gray-600">PNG, JPG, JPEG </p>
+                <p className="text-xs text-gray-600">PNG, JPG </p>
               </div>
 
               <input
-                name="productImage"
-                id="imageUpload"
+                name="image"
+                id="image"
                 type="file"
                 className="sr-only"
                 onChange={handleImageChange}

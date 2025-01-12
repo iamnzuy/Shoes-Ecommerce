@@ -18,17 +18,6 @@ function ProductHeader() {
   );
 }
 
-// const productList = [
-//   {
-//     id: 1,
-//     name: "Product Name",
-//     price: "1,000,000 đ",
-//     brand: "Brand",
-//     // change status later
-//     status: "Available",
-//   },
-// ];
-
 function ProductList() {
   const [products, setProducts] = useState([]);
 
