@@ -48,7 +48,6 @@ function ProductCard(props) {
         </a>
         <a
           href="/admin/product/delete-product/1"
-          onclick="return confirm('Are you sure to delete this product?')"
           className="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple"
         >
           <i className="fa-solid fa-trash-can mr-2"></i>Delete

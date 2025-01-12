@@ -11,8 +11,10 @@ function Input(props) {
         type={props.type}
         placeholder={props.placeholder}
         id={props.name}
-        className="inputHighlight font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400   w-full rounded-md sm:text-sm "
-      ></input>
+        name={props.name}
+        required={true}
+        className="inputHighlight font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 w-full rounded-md sm:text-sm"
+      />
     </div>
   );
 }
@@ -49,7 +51,6 @@ function Selector(props) {
 function ProductCreate() {
   // preview image khi upload file
   const [imagePreview, setImagePreview] = useState(null);
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -57,29 +58,28 @@ function ProductCreate() {
       setImagePreview(imageUrl);
     }
   };
-
   return (
     <div className="mx-auto w-3/4">
       <h2 className="my-3 mt-6 text-2xl font-semibold text-gray-800">
         Create a new product
       </h2>
-      <form>
+      <form id="productForm" onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 gap-x-12 gap-y-6 px-24 ">
-          <Input name="Name" placeholder="Product Name" type="text" />
-          <Input name="Price" placeholder="Product Price" type="number" />
-
+          <div className="flex w-full col-span-2 gap-5">
+            <Input name="Name" placeholder="Product Name" type="text" />
+            <Input name="Price" placeholder="Product Price" type="number" />
+            <Input name="Quantity" placeholder="" type="number" />
+          </div>
           {/* description */}
           <div className="mt-2 col-span-2">
             <label className="text-gray-600 font-medium">Description</label>
             <textarea
-              name="productLongDescription"
+              name="Long Description"
               className="inputHighlight font-medium mt-1 px-3 py-2 bg-white border shadow-sm  border-slate-300 placeholder-slate-400 w-full rounded-md"
             ></textarea>
           </div>
 
           {/*  */}
-          <Input name="Short Description" placeholder="" type="text" />
-          <Input name="Quantity" placeholder="" type="number" />
 
           {/* selectors */}
           <Selector name="Category" options={categories} />
@@ -111,6 +111,7 @@ function ProductCreate() {
               </div>
 
               <input
+                name="productImage"
                 id="imageUpload"
                 type="file"
                 className="sr-only"
