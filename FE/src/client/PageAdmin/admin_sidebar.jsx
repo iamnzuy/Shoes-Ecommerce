@@ -4,7 +4,7 @@ function DashboardTab() {
   return (
     // change to router later
     <Link
-      className="px-5 inline-flex items-center w-full h-12 text-sm font-semibold dashboard-text transition-colors duration-150 hover:text-gray-800"
+      className="px-5 inline-flex items-center w-full h-12 text-sm text-gray-500 no-underline font-semibold dashboard-text transition-colors duration-150 hover:text-gray-800"
       to="dashboard"
     >
       <svg
@@ -70,15 +70,21 @@ function StoreTab() {
         }`}
         aria-label="submenu"
       >
-        <li className="px-2 py-1  transition-colors duration-150 hover:text-gray-800">
+        <li className="px-2 py-1  transition-colors ">
           {/* change to router link later */}
-          <Link className="w-full text-base " to="products">
+          <Link
+            className="w-full text-base text-gray-500 no-underline duration-150 hover:text-gray-800"
+            to="products"
+          >
             Product
           </Link>
         </li>
-        <li className="px-2 py-1  transition-colors duration-150 hover:text-gray-800">
+        <li className="px-2 py-1  transition-colors ">
           {/* change to router link later */}
-          <Link className="w-full text-base" to="voucher">
+          <Link
+            className="w-full text-base text-gray-500 no-underline duration-150 hover:text-gray-800"
+            to="voucher"
+          >
             Voucher
           </Link>
         </li>
@@ -130,15 +136,21 @@ function ManagementTab() {
         }`}
         aria-label="submenu"
       >
-        <li className="px-2 py-1  transition-colors duration-150 hover:text-gray-800">
+        <li className="px-2 py-1  transition-colors duration-150 ">
           {/* change to link router later */}
-          <Link className="w-full text-base " to="user">
+          <Link
+            className="w-full text-base text-gray-500 no-underline duration-150 hover:text-gray-800"
+            to="user"
+          >
             User
           </Link>
         </li>
-        <li className="px-2 py-1  transition-colors duration-150 hover:text-gray-800">
+        <li className="px-2 py-1  transition-colors duration-150 ">
           {/* change to link router later */}
-          <Link className="w-full text-base" to="order">
+          <Link
+            className="w-full text-base text-gray-500 no-underline duration-150 hover:text-gray-800"
+            to="order"
+          >
             Order
           </Link>
         </li>

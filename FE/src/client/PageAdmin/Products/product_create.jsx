@@ -180,7 +180,7 @@ function ProductCreate() {
           <Link
             to="/admin/products"
             href="/admin/product"
-            className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-blue-500  flex gap-2 items-center"
+            className="no-underline rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-blue-500  flex gap-2 items-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

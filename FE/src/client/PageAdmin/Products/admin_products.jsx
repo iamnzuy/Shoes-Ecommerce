@@ -5,7 +5,7 @@ import { Link } from "react-router";
 function ProductHeader() {
   return (
     <thead>
-      <tr className="text-xs border text-center text-gray-500 uppercase border-black">
+      <tr className="text-xs border text-center text-gray-500 uppercase border-gray-100">
         <th className="px-4 py-3 text-gray-700 text-base">Id</th>
         <th className="px-4 py-3 text-gray-700 text-base">Image</th>
         <th className="px-4 py-3 text-gray-700 text-base">Name</th>
@@ -55,7 +55,7 @@ function Products() {
     <div className="w-full px-16 ">
       <div className="flex justify-between items-center">
         <h1 className="my-6 text-2xl font-semibold text-gray-700">Products</h1>
-        <Link to="create" className="bigBtn">
+        <Link to="create" className="bigBtn no-underline text-white">
           Create new product
         </Link>
       </div>
