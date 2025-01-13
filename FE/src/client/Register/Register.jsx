@@ -87,8 +87,7 @@ export default function RegisterPage()
         <div className="LoginPage">
             <div className="container">
                 <div className="Header">
-                    <img src="" alt="Logo"></img>
-                    <p className="company_name">Shoespee</p> 
+                    <img src="logo.png" alt="Logo"></img>
                     <p >Register Page</p>
                 </div>
             </div>

@@ -9,14 +9,15 @@
 {
     
     display: flex;
-    padding-bottom:30px;
-    padding-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
 }
 
 .Header p
 {
     
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 400;
 }
 
@@ -30,7 +31,7 @@
     display: flex;
     justify-content: center;
     padding: 50px;
-    background-image: url("https://down-vn.img.susercontent.com/file/sg-11134004-7rff9-m47h5vo9qfr552");
+    background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e01975153544611.6331e2e670440.jpg");
     background-repeat: no-repeat;
 }
 
