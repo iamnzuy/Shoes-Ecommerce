@@ -162,7 +162,7 @@ function ManagementTab() {
 function sideBar() {
   return (
     <>
-      <aside className="z-20 hidden w-60 overflow-y-auto bg-white md:block flex-shrink-0 h-full pt-8 pl-2">
+      <aside className="z-20 hidden w-60 overflow-y-auto bg-white md:block flex-shrink-0 h-full pt-8 pl-2 overflow-clip">
         <div className="py-1 px-1 text-gray-500 grid grid-row gap-1 w-auto h-auto">
           {/* change this anchor to router link later */}
           <DashboardTab />
