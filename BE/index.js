@@ -8,6 +8,8 @@ import productRouter from './routes/product.js'
 import orderRouter from './routes/order.js'
 import startServer from './db.js';
 import cookieParser from 'cookie-parser';
+import { mongo } from 'mongoose';
+import { productModel } from './models/product.js';
 
 const app = express();
 
@@ -20,7 +22,11 @@ app.use('/auth',authRouter)
 app.use('/products',productRouter)
 app.use('/order',orderRouter)
 
-
+app.get('/getProducts', (req,res) => {
+  productModel.find()
+  .then(users => res.json(users))
+  .catch(err => res.json(err));
+})
 
 //handle unexisted route
 app.use((req, res, next) => {
