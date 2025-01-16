@@ -7,5 +7,5 @@ let Route=express.Router();
 Route.post('/place',verifyToken,checkOrder,placeOrder)
 //get user orders
 Route.get('/',verifyToken,sendOrders)
-
+ 
 export default Route

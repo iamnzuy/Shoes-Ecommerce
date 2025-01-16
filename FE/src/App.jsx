@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, Link } from "react-router";
+import { createBrowserRouter, RouterProvider} from "react-router";
 import adminRoutes from "./routes/admin_routes";
 import clientRoutes from "./routes/client_routes";
 import { loginRoute, registerRoute } from "./routes/auth_routes";
