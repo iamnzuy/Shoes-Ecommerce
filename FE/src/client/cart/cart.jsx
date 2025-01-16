@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import "./cart.css";
 import axios from "axios";
+import cartStore from "../../store/cartStore";
+import Checkout from "./checkout";
 
 function Cart() {
-    const [products, setProducts] = useState([]);
-
+    const {cart: products,getCart,totalPrice,handleAdd,handleRemove}=cartStore()
+    const [active,setActive]=useState(false)
+    console.log(products);
     useEffect(() => {
         axios
             .get("http://localhost:5000/getProducts")
@@ -20,55 +23,15 @@ function Cart() {
                     price: product.price,
                     quantity: 1,
                 }));
-                setProducts(productsWithQuantity);
+                getCart(productsWithQuantity);
             })
             .catch((err) => console.log(err));
     }, []);
 
-    // Sự kiện thêm số lượng sản phẩm
-    const handleAdd = (index) => {
-        const newProducts = products.slice();
-        newProducts[index] = {
-            id: newProducts[index].id,
-            description: newProducts[index].description,
-            descriptionShorten: newProducts[index].descriptionShorten,
-            image: newProducts[index].image,
-            name: newProducts[index].name,
-            price: newProducts[index].price,
-            quantity: newProducts[index].quantity + 1,
-        };
-        setProducts(newProducts);
-    };
-
-    // Sự kiện xoá số lượng sản phẩm
-    const handleRemove = (index) => {
-        const newProducts = products.slice();
-        if (newProducts[index].quantity > 1) {
-            newProducts[index] = {
-                id: newProducts[index].id,
-                description: newProducts[index].description,
-                descriptionShorten: newProducts[index].descriptionShorten,
-                image: newProducts[index].image,
-                name: newProducts[index].name,
-                price: newProducts[index].price,
-                quantity: newProducts[index].quantity - 1,
-            };
-            setProducts(newProducts);
-        }
-    };
-
-    // Tính tổng tiền
-    const calculateTotal = () => {
-        let total = 0;
-        for (let i = 0; i < products.length; i++) {
-            total += products[i].price * products[i].quantity;
-        }
-        return total;
-    };
 
     return (
         <>
-            <div className="cart-title">My cart</div>
+            <h2 className="cart-title">My cart</h2>
             <div className="cart-items-headers-container">
                 <div className="cart-items-headers">
                     <div
@@ -154,7 +117,7 @@ function Cart() {
                         <div className="cart-checkout-item">
                             <div className="cart-checkout-item-detail">
                                 <div>Total products:</div>
-                                <div>{calculateTotal()}</div>
+                                <div>{totalPrice}</div>
                             </div>
                             <div className="cart-checkout-item-detail">
                                 <div>Shipping cost:</div>
@@ -164,133 +127,15 @@ function Cart() {
                         <button
                             className="cart-checkout-item"
                             id="cart-checkout-btn"
-                            onClick={() => {
-                                document.querySelector(
-                                    ".cart-payment"
-                                ).style.display = "flex";
-                                document.querySelector(
-                                    ".cart-close-btn"
-                                ).style.display = "flex";
-                            }}
+                            onClick={() => setActive(true)}
                         >
                             <div>Checkout</div>
-                            <div>{calculateTotal()}</div>
+                            <div>{totalPrice}</div>
                         </button>
                     </div>
                 </div>
             </div>
-            <div className="cart-payment">
-                <div className="cart-payment-container">
-                    <div className="cart-payment-container-hr">
-                        <div className="cart-payment-info">
-                            <div className="cart-close-payment-btn-container">
-                                <button
-                                    id="cart-close-payment-btn"
-                                    className="cart-close-btn"
-                                    onClick={() => {
-                                        document.querySelector(
-                                            ".cart-payment"
-                                        ).style.display = "none";
-                                        document.querySelector(
-                                            ".cart-close-btn"
-                                        ).style.display = "none";
-                                    }}
-                                >
-                                    X
-                                </button>
-                            </div>
-
-                            <div className="cart-payment-info-header">
-                                Payment Info
-                            </div>
-                            <div className="cart-payment-info-subheader">
-                                Payment method
-                            </div>
-                            <div className="cart-payment-info-detail">
-                                <div>
-                                    <input type="radio" name="payment" />
-                                    <label>Paypal</label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="payment" />
-                                    <label>Credit Card</label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="payment" />
-                                    <label>Debit Card</label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="payment" />
-                                    <label>Cash</label>
-                                </div>
-                            </div>
-                            <div className="cart-payment-info-subheader">
-                                Name on card
-                            </div>
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    name="username"
-                                    id="username"
-                                    placeholder=""
-                                />
-                            </div>
-                            <div className="cart-payment-info-subheader">
-                                Card number
-                            </div>
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    name="username"
-                                    id="username"
-                                    placeholder=""
-                                />
-                            </div>
-                            <div className="cart-payment-info-subheader-exp-container">
-                                <div className="cart-payment-info-subheader-exp">
-                                    <div className="cart-payment-info-subheader">
-                                        Expiration date
-                                    </div>
-                                    <div id="cvc" className="cart-payment-info-subheader">
-                                        CVC
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="cart-payment-info-subheader-exp-container">
-                                <div className="cart-payment-info-subheader-exp">
-                                    <div class="input-group">
-                                        <input
-                                            type="text"
-                                            name="username"
-                                            id="username"
-                                            placeholder=""
-                                        />
-                                    </div>
-                                    <div class="input-group">
-                                        <input
-                                            type="text"
-                                            name="username"
-                                            id="username"
-                                            placeholder=""
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="cart-payment-checkout-btn-container">
-                                <button
-                                    id="cart-payment-checkout-btn"
-                                    onClick={() => {
-                                        alert("Checkout success");
-                                    }}
-                                >
-                                    <div>Checkout</div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           <Checkout active={active} setActive={setActive}/>
         </>
     );
 }
