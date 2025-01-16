@@ -1,27 +1,103 @@
-.btn-add {
-    background-color: #11ff00;
+:root {
+    --primary-color: #111;
+    --secondary-color: #fff;
+    --tertiary-color: #f84814;
+}
+
+.cart-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+
+.cart-items-container, .cart-items-headers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cart-items, .cart-items-headers {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-between;
+    width: 80vw;
+    /* height: 12vh;
+    max-height: 200px; */
+    max-width: 1200px;
+    overflow: clip;
+    margin-bottom: 20px;
+}
+
+.cart-items-header, .cart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-items-header {
+    color: #7d7d7d;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#cart-item-info, #cart-item-info-header {
+    width: 30%;;
+}
+
+#cart-item-info div {
+    width: 100%;
+}
+
+#cart-item-quantity, #cart-item-quantity-header {
+    width: 10%;
+}
+
+#cart-item-img, #cart-item-img-header, #cart-item-price, #cart-item-price-header, #cart-item-price-total, #cart-item-price-total-header {
+    width: 20%;
+}
+
+#cart-item-info i {
+    font-size: 16px;
+}
+
+#cart-item-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#cart-item-quantity, #cart-item-price, #cart-item-price-total {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#cart-item-price, #cart-item-price-total {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-add, .btn-rmv {
     color: #111;
     cursor: pointer;
     display: inline-block;
     font-size: 20px;
     font-weight: bold;
     line-height: 29px;
-    margin-top: 10px;
     padding: 0 10px;
     text-align: center;
     width: 40px
 }
 
-.btn-rmv {
-    background-color: #ff0000;
-    color: #111;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 29px;
-    margin-top: 10px;
-    padding: 0 10px;
-    text-align: center;
-    width: 40px
+img {
+    width:  100px;
+    height: 100px;
+    border-radius: 4px;
 }
+
