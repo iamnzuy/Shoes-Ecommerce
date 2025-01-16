@@ -73,34 +73,36 @@ function Cart() {
                         className="cart-items-header"
                         id="cart-item-img-header"
                     >
-                        Product
+                        PRODUCT
                     </div>
                     <div
                         className="cart-items-header"
                         id="cart-item-info-header"
                     >
-                        Description
+                        DESCRIPTION
                     </div>
                     <div
                         className="cart-items-header"
                         id="cart-item-price-header"
                     >
-                        Price
+                        PRICE
                     </div>
                     <div
                         className="cart-items-header"
                         id="cart-item-quantity-header"
                     >
-                        Quantity
+                        QUANTITY
                     </div>
                     <div
                         className="cart-items-header"
                         id="cart-item-price-total-header"
                     >
-                        Total
+                        TOTAL
                     </div>
                 </div>
             </div>
+            <div id="hr"> <hr /></div>
+           
             <div className="cart-items-container">
                 {products.map((product, index) => (
                     <div key={index} className="cart-items">
@@ -141,8 +143,34 @@ function Cart() {
                     </div>
                 ))}
             </div>
-
-            <h1>Total: {calculateTotal()}</h1>
+            <div className="cart-checkout-info">
+                <div className="cart-checkout-info-container">
+                    <div className="cart-checkout-box">
+                        <div className="cart-checkout-item">
+                            <div className="cart-checkout-item-detail" >
+                                <div>
+                                    Total products:
+                                </div>
+                                <div>
+                                    {calculateTotal()}
+                                </div>
+                            </div>
+                            <div className="cart-checkout-item-detail"> 
+                                <div>
+                                    Shipping cost: 
+                                </div>
+                                <div>
+                                    <strong>Free</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <button className="cart-checkout-item" id="cart-checkout-btn">
+                            <div>Checkout</div>
+                            <div>{calculateTotal()}</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
