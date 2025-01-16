@@ -12,7 +12,9 @@ function Cart() {
                 const productsWithQuantity = response.data.map((product) => ({
                     description: product.description,
                     descriptionShorten:
-                        product.description.substring(0, 80) + "...",
+                        product.description.length <= 80
+                            ? product.description
+                            : product.description.substring(0, 80) + "...",
                     name: product.name,
                     image: product.image,
                     price: product.price,
@@ -101,8 +103,11 @@ function Cart() {
                     </div>
                 </div>
             </div>
-            <div id="hr"> <hr /></div>
-           
+            <div id="hr">
+                {" "}
+                <hr />
+            </div>
+
             <div className="cart-items-container">
                 {products.map((product, index) => (
                     <div key={index} className="cart-items">
@@ -147,27 +152,142 @@ function Cart() {
                 <div className="cart-checkout-info-container">
                     <div className="cart-checkout-box">
                         <div className="cart-checkout-item">
-                            <div className="cart-checkout-item-detail" >
-                                <div>
-                                    Total products:
-                                </div>
-                                <div>
-                                    {calculateTotal()}
-                                </div>
+                            <div className="cart-checkout-item-detail">
+                                <div>Total products:</div>
+                                <div>{calculateTotal()}</div>
                             </div>
-                            <div className="cart-checkout-item-detail"> 
-                                <div>
-                                    Shipping cost: 
-                                </div>
-                                <div>
-                                    <strong>Free</strong>
-                                </div>
+                            <div className="cart-checkout-item-detail">
+                                <div>Shipping cost:</div>
+                                <div>Free</div>
                             </div>
                         </div>
-                        <button className="cart-checkout-item" id="cart-checkout-btn">
+                        <button
+                            className="cart-checkout-item"
+                            id="cart-checkout-btn"
+                            onClick={() => {
+                                document.querySelector(
+                                    ".cart-payment"
+                                ).style.display = "flex";
+                                document.querySelector(
+                                    ".cart-close-btn"
+                                ).style.display = "flex";
+                            }}
+                        >
                             <div>Checkout</div>
                             <div>{calculateTotal()}</div>
                         </button>
+                    </div>
+                </div>
+            </div>
+            <div className="cart-payment">
+                <div className="cart-payment-container">
+                    <div className="cart-payment-container-hr">
+                        <div className="cart-payment-info">
+                            <div className="cart-close-payment-btn-container">
+                                <button
+                                    id="cart-close-payment-btn"
+                                    className="cart-close-btn"
+                                    onClick={() => {
+                                        document.querySelector(
+                                            ".cart-payment"
+                                        ).style.display = "none";
+                                        document.querySelector(
+                                            ".cart-close-btn"
+                                        ).style.display = "none";
+                                    }}
+                                >
+                                    X
+                                </button>
+                            </div>
+
+                            <div className="cart-payment-info-header">
+                                Payment Info
+                            </div>
+                            <div className="cart-payment-info-subheader">
+                                Payment method
+                            </div>
+                            <div className="cart-payment-info-detail">
+                                <div>
+                                    <input type="radio" name="payment" />
+                                    <label>Paypal</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="payment" />
+                                    <label>Credit Card</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="payment" />
+                                    <label>Debit Card</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="payment" />
+                                    <label>Cash</label>
+                                </div>
+                            </div>
+                            <div className="cart-payment-info-subheader">
+                                Name on card
+                            </div>
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    placeholder=""
+                                />
+                            </div>
+                            <div className="cart-payment-info-subheader">
+                                Card number
+                            </div>
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    placeholder=""
+                                />
+                            </div>
+                            <div className="cart-payment-info-subheader-exp-container">
+                                <div className="cart-payment-info-subheader-exp">
+                                    <div className="cart-payment-info-subheader">
+                                        Expiration date
+                                    </div>
+                                    <div id="cvc" className="cart-payment-info-subheader">
+                                        CVC
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="cart-payment-info-subheader-exp-container">
+                                <div className="cart-payment-info-subheader-exp">
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            name="username"
+                                            id="username"
+                                            placeholder=""
+                                        />
+                                    </div>
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            name="username"
+                                            id="username"
+                                            placeholder=""
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="cart-payment-checkout-btn-container">
+                                <button
+                                    id="cart-payment-checkout-btn"
+                                    onClick={() => {
+                                        alert("Checkout success");
+                                    }}
+                                >
+                                    <div>Checkout</div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
