@@ -1,5 +1,5 @@
-import DashBoard from "../client/PageAdmin/admin_dashboard";
-import Products from "../client/PageAdmin/Products/admin_products";
+import DashBoard from "../client/PageAdmin/Dashboard";
+import Products from "../client/PageAdmin/Products/Products";
 import ProductCreate from "../client/PageAdmin/Products/product_create";
 import ProductView from "../client/PageAdmin/Products/product_view";
 import Admin from "../client/PageAdmin/admin";

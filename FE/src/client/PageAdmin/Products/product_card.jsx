@@ -1,7 +1,11 @@
 import { FaEye } from "react-icons/fa";
 import { FaRegTrashCan, FaPenToSquare } from "react-icons/fa6";
 import { Link } from "react-router";
+import { useState } from "react";
+import useProductStore from "../../../store/productStore.js";
+
 function ProductCard(props) {
+  const { setProductToDelete } = useProductStore();
   return (
     <tr>
       {/* numbering goes here */}
@@ -43,19 +47,24 @@ function ProductCard(props) {
       <td className="px-4 py-3 text-sm flex justify-center">
         <Link
           to={`view/${props.id}`}
-          className="flex flex-row items-center gap-2 no-underline px-2 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple"
+          className="flex flex-row items-center gap-2 no-underline px-2 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 "
         >
           <FaEye />
           View
         </Link>
         <a
           href="/admin/product/edit-product/1"
-          className="flex flex-row items-center gap-2 no-underline mx-2 px-2 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 focus:outline-none focus:shadow-outline-purple"
+          className="flex flex-row items-center gap-2 no-underline mx-2 px-2 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 "
         >
           <FaPenToSquare />
           Update
         </a>
-        <button className="flex flex-row items-center gap-2 no-underline px-2 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">
+        <button
+          onClick={async () => {
+            setProductToDelete(props);
+          }}
+          className="flex flex-row items-center gap-2 no-underline px-2 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700"
+        >
           <FaRegTrashCan />
           Delete
         </button>

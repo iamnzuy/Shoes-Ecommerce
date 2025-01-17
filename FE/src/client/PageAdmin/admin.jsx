@@ -1,6 +1,6 @@
-import SideBar from "./admin_sidebar";
-import NavBar from "./admin_navbar";
-import DashBoard from "./admin_dashboard";
+import SideBar from "./Sidebar";
+import NavBar from "./Navbar";
+import DashBoard from "./Dashboard";
 import { createBrowserRouter, Outlet } from "react-router";
 
 function adminPage() {
