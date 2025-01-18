@@ -1,14 +1,23 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import axios from 'axios';
+import cartStore from "../../store/cartStore";
+import useAuthStore from '../../store/authStore';
+import {toast, ToastContainer} from 'react-toastify'
+// import axios from '../axios'
+import axios from "axios";
 
 function ProductDetail(){
     const [quantity, setQuantity] = useState(1);
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+    const logout = useAuthStore(state => state.logout);
+    const addToCart = cartStore(state => state.addToCart);
+    const cart = cartStore(state => state.cart);
+    
+    axios.defaults.baseURL = "http://localhost:5000";
     const { pid } = useParams();
 
-    axios.defaults.baseURL = "http://localhost:5000";
 
     const getItem = async () => {
         const res = await axios.get(`/products/single/${pid}`)
@@ -16,6 +25,7 @@ function ProductDetail(){
             setLoading(false);
             console.error(error);
         })
+
         if (!res.data){
             setLoading(false);
             throw new Error("Product not found");
@@ -24,6 +34,15 @@ function ProductDetail(){
             setLoading(false);
             setProduct(res.data);
         }
+    }
+
+    const getProducts = async () => {
+        const res = await axios.get('/getProducts')
+        .catch((error) => {
+            console.log(error);
+        });
+
+        console.log(res);
     }
 
     const formatPrice = (price) => {
@@ -36,13 +55,16 @@ function ProductDetail(){
 
     const handleAddToCart = (e) => {
         e.preventDefault();
-        console.log(product.price)
+        
         const item = {
             ...product,
             quantity: quantity,
-            
         }
-        console.log(item);
+        
+        addToCart(item);
+      
+
+        toast.success("Add to cart successful", { autoClose: 3000 });
         
     }
 
@@ -91,6 +113,7 @@ function ProductDetail(){
                 </div>
             </div>
         </div>
+        <ToastContainer />
     </>
     )
 }

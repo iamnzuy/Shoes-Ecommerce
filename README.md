@@ -1,1 +1,1 @@
-Need shopping cart function, header and product.brand
+need to remake header
