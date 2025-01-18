@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import ProductCard from "./product_card";
 import { Link } from "react-router";
 import useProductStore from "../../../store/productStore.js";
+import { ToastContainer, toast } from "react-toastify";
+
 function ProductHeader() {
   return (
     <thead>
@@ -48,6 +50,7 @@ function DeleteConfirmation() {
     </div>
   );
 }
+
 function ProductList() {
   const { products, setProductToDelete, deleteProduct, fetchProducts } =
     useProductStore();
@@ -80,6 +83,7 @@ function Products() {
   const { isDelete, setIsDelete } = useState(true);
   return (
     <div className="w-full px-16 ">
+      <ToastContainer />
       {productToDelete != "" ? (
         <DeleteConfirmation productToDelete={productToDelete} />
       ) : (

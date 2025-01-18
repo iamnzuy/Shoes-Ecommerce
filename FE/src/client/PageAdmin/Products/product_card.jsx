@@ -52,13 +52,13 @@ function ProductCard(props) {
           <FaEye />
           View
         </Link>
-        <a
-          href="/admin/product/edit-product/1"
+        <Link
+          to={`update/${props.id}`}
           className="flex flex-row items-center gap-2 no-underline mx-2 px-2 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 "
         >
           <FaPenToSquare />
           Update
-        </a>
+        </Link>
         <button
           onClick={async () => {
             setProductToDelete(props);

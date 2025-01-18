@@ -2,7 +2,7 @@ import { Navigate, useNavigate } from "react-router";
 import { useState, React, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
-const ProductView = () => {
+function ProductView() {
   const { id } = useParams();
   const [Product, setProduct] = useState({});
   const navigate = useNavigate();
@@ -13,7 +13,6 @@ const ProductView = () => {
         const response = await axios.get(
           `http://localhost:5000/products/single/${id}`
         );
-        console.log(response.data);
         setProduct(response.data);
       } catch (error) {
         console.error(error);
@@ -62,6 +61,6 @@ const ProductView = () => {
       </div>
     </div>
   );
-};
+}
 
 export default ProductView;

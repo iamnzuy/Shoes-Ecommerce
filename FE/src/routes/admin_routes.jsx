@@ -2,6 +2,7 @@ import DashBoard from "../client/PageAdmin/Dashboard";
 import Products from "../client/PageAdmin/Products/Products";
 import ProductCreate from "../client/PageAdmin/Products/product_create";
 import ProductView from "../client/PageAdmin/Products/product_view";
+import ProductUpdate from "../client/PageAdmin/Products/product_update";
 import Admin from "../client/PageAdmin/admin";
 
 const adminRoutes = {
@@ -15,6 +16,7 @@ const adminRoutes = {
     },
     { path: "products/create", element: <ProductCreate /> },
     { path: "products/view/:id", element: <ProductView /> },
+    { path: "products/update/:id", element: <ProductUpdate /> },
   ],
 };
 

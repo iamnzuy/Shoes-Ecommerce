@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router";
-import { ToastContainer, toast } from "react-toastify";
-import useProductStore from "../../../store/productStore.js";
+import { Navigate, useNavigate, Link } from "react-router";
+import { useState, React, useEffect } from "react";
+import { useParams } from "react-router";
+import axios from "axios";
 
 function Input(props) {
   return (
@@ -15,6 +15,8 @@ function Input(props) {
         id={props.name}
         name={props.name}
         required={true}
+        value={props.value || ""} // Add this line
+        onChange={props.onChange} // Add this line
         className="inputHighlight font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 w-full rounded-md sm:text-sm"
       />
     </div>
@@ -38,6 +40,8 @@ function Selector(props) {
       <select
         id={props.name}
         name={props.name}
+        value={props.value || ""} // Add this line
+        onChange={props.onChange} // Add this line
         className="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
       >
         {props.options.map((option, index) => (
@@ -50,35 +54,66 @@ function Selector(props) {
   );
 }
 
-function ProductCreate() {
-  // lấy từ store createProduct
-  const { createProduct } = useProductStore();
-  // preview image khi upload file
-  const [imagePreview, setImagePreview] = useState(null);
+function ProductUpdate() {
+  const { id } = useParams();
+  const [Product, setProduct] = useState({});
+  const [originalName, setOriginalName] = useState("");
+  const [imagePreview, setImagePreview] = useState();
+  const navigate = useNavigate();
+
+  // image change preview
   const handleImageChange = (e) => {
-    console.log(imagePreview);
     const file = e.target.files[0];
     if (file) {
+      // Create URL for preview
       const imageUrl = URL.createObjectURL(file);
       setImagePreview(imageUrl);
+      // Update product state with file
+      setProduct({ ...Product, image: file });
+      console.log(Product);
     }
   };
 
-  //
+  useEffect(() => {
+    async function fetchProduct() {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/products/single/${id}`
+        );
+        setProduct(response.data);
+        setOriginalName(response.data.name);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchProduct();
+  }, []);
+
   return (
     <div className="mx-auto w-3/4">
-      <ToastContainer />
       <h2 className="my-3 mt-6 text-2xl font-semibold text-gray-800">
-        Create a new product
+        Update {originalName}
       </h2>
       <form
         id="productForm"
-        onSubmit={createProduct}
+        // onSubmit={createProduct}
         encType="multipart/form-data"
       >
         <div className="grid grid-cols-2 gap-x-12 gap-y-6 px-24 ">
-          <Input name="name" placeholder="Product Name" type="text" />
-          <Input name="price" placeholder="Product Price" type="number" />
+          <Input
+            name="name"
+            placeholder="Product Name"
+            type="text"
+            value={Product.name}
+            onChange={(e) => setProduct({ ...Product, name: e.target.value })}
+          />
+          <Input
+            name="price"
+            placeholder="Product Price"
+            type="number"
+            value={Product.price}
+            onChange={(e) => setProduct({ ...Product, price: e.target.value })}
+          />
           {/* description */}
           <div className="mt-2 col-span-2">
             <label
@@ -90,14 +125,30 @@ function ProductCreate() {
             <textarea
               name="description"
               className="inputHighlight font-medium mt-1 px-3 py-2 bg-white border shadow-sm  border-slate-300 placeholder-slate-400 w-full rounded-md"
+              value={Product.description}
+              onChange={(e) =>
+                setProduct({ ...Product, description: e.target.value })
+              }
             ></textarea>
           </div>
 
           {/*  */}
 
           {/* selectors */}
-          <Selector name="category" options={categories} />
-          <Selector name="brand" options={brands} />
+          <Selector
+            name="category"
+            options={categories}
+            value={Product.categories}
+            onChange={(e) =>
+              setProduct({ ...Product, category: e.target.value })
+            }
+          />
+          <Selector
+            name="brand"
+            options={brands}
+            value={Product.brands}
+            onChange={(e) => setProduct({ ...Product, brand: e.target.value })}
+          />
 
           {/* image uploader */}
           <div className="sm:col-span-full mt-4">
@@ -126,19 +177,17 @@ function ProductCreate() {
                 id="image"
                 type="file"
                 className="sr-only"
-                onChange={handleImageChange}
+                onChange={(e) => handleImageChange(e)}
               ></input>
             </div>
             {/* Preview image */}
             <div className="h-18 w-full bg-gray-100 rounded-md">
-              {imagePreview && (
-                <img
-                  id="imagePreview"
-                  src={imagePreview}
-                  alt="Image Preview"
-                  className="mx-auto h-56 w-56 text-gray-300"
-                />
-              )}
+              <img
+                id="imagePreview"
+                src={imagePreview || Product.image}
+                alt="Image Preview"
+                className="mx-auto h-56 w-56 text-gray-300"
+              />
             </div>
           </div>
         </div>
@@ -179,4 +228,4 @@ function ProductCreate() {
   );
 }
 
-export default ProductCreate;
+export default ProductUpdate;
