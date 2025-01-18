@@ -6,6 +6,7 @@ export async function checkProduct(req,res,next) {
      price: Joi.required(),
      description: Joi.string().min(10),
      brand: Joi.string().required(),
+     category: Joi.string(),
   }).unknown(true)
   try {
     await schema.validateAsync(req.body)
