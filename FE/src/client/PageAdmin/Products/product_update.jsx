@@ -90,7 +90,7 @@ function ProductUpdate() {
   }, []);
 
   return (
-    <div className="mx-auto w-3/4">
+    <div className="mx-auto w-3/4 py-2">
       <h2 className="my-3 mt-6 text-2xl font-semibold text-gray-800">
         Update {originalName}
       </h2>
