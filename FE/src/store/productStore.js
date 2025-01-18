@@ -1,37 +1,11 @@
 import { create } from "zustand";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-// toast notify
-const notifySuccess = () => {
-  toast.success("Successfully!", {
-    position: "top-right",
-    autoClose: 3500,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-};
-
-const notifyError = () => {
-  toast.error("Error", {
-    position: "top-right",
-    autoClose: 3500,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-};
+import { notifyError,notifySuccess } from "../utils/toast";
 
 // store
 const useProductStore = create((set) => ({
   products: [],
-
+  productToDelete: "",
   fetchProducts: async () => {
     try {
       const response = await axios.get("http://localhost:5000/products/all");
@@ -40,8 +14,6 @@ const useProductStore = create((set) => ({
       console.error("Error fetching products:", error);
     }
   },
-
-  productToDelete: "",
   setProductToDelete: async (product) => {
     set({ productToDelete: product });
   },
@@ -51,20 +23,16 @@ const useProductStore = create((set) => ({
       const response = await axios.delete(
         `http://localhost:5000/products/${productID}`
       );
-      notifySuccess();
+      notifySuccess('product deleted');
     } catch (error) {
       console.error(error);
       notifyError();
     }
   },
 
-  createProduct: async (e) => {
+  createProduct: async (e,navigate) => {
     e.preventDefault();
-    const form = document.getElementById("productForm");
-    const formData = new FormData(form);
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
-    }
+    const formData = new FormData(e.target);
     try {
       const response = await axios.post(
         "http://localhost:5000/products/create",
@@ -75,9 +43,29 @@ const useProductStore = create((set) => ({
           },
         }
       );
-      console.log(response.data);
-      e.target.reset();
-      notifySuccess();
+      notifySuccess('product created successfully');
+      navigate('/admin/products')
+    } catch (error) {
+      console.error(error);
+      notifyError();
+    }
+  },
+  updateProduct: async (e,id,navigate) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    try {
+      const response = await axios.put(
+        "http://localhost:5000/products/update/"+id,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Important for file uploads
+          },
+        }
+      );
+      set({products: response.data})
+      notifySuccess('product updated successfully');
+      navigate('/admin/products')
     } catch (error) {
       console.error(error);
       notifyError();

@@ -5,6 +5,7 @@ import { checkProduct } from "../validator/product.js";
 import {
   createProduct,
   deleteProduct,
+  editProduct,
   sendAllProducts,
   sendProducts,
   sendSingleProducts,
@@ -12,9 +13,11 @@ import {
 let Route = express.Router();
 
 Route.post("/create", upload.single("image"), checkProduct, createProduct);
-Route.delete("/:id", verifyToken, verifyAdmin, deleteProduct);
+//, verifyToken, verifyAdmin
+Route.delete("/:id", deleteProduct);
 Route.get("/all", sendAllProducts);
 Route.get("/single/:id", sendSingleProducts);
 Route.get("/", sendProducts);
+Route.put("/update/:id",upload.single('image'),editProduct);
 
 export default Route;

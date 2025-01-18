@@ -1,6 +1,7 @@
-import { Navigate, useNavigate, Link } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { useState, React, useEffect } from "react";
 import { useParams } from "react-router";
+import useProductStore from '../../../store/productStore'
 import axios from "axios";
 
 function Input(props) {
@@ -60,6 +61,7 @@ function ProductUpdate() {
   const [originalName, setOriginalName] = useState("");
   const [imagePreview, setImagePreview] = useState();
   const navigate = useNavigate();
+  const {updateProduct}=useProductStore()
 
   // image change preview
   const handleImageChange = (e) => {
@@ -96,7 +98,7 @@ function ProductUpdate() {
       </h2>
       <form
         id="productForm"
-        // onSubmit={createProduct}
+        onSubmit={e=>updateProduct(e,id,navigate)}
         encType="multipart/form-data"
       >
         <div className="grid grid-cols-2 gap-x-12 gap-y-6 px-24 ">

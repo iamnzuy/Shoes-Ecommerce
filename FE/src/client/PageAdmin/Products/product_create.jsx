@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
-import { ToastContainer, toast } from "react-toastify";
+import { Link, useNavigate } from "react-router";
 import useProductStore from "../../../store/productStore.js";
 
 function Input(props) {
@@ -55,6 +54,7 @@ function ProductCreate() {
   const { createProduct } = useProductStore();
   // preview image khi upload file
   const [imagePreview, setImagePreview] = useState(null);
+  let navigate=useNavigate()
   const handleImageChange = (e) => {
     console.log(imagePreview);
     const file = e.target.files[0];
@@ -67,13 +67,12 @@ function ProductCreate() {
   //
   return (
     <div className="mx-auto w-3/4">
-      <ToastContainer />
       <h2 className="my-3 mt-6 text-2xl font-semibold text-gray-800">
         Create a new product
       </h2>
       <form
         id="productForm"
-        onSubmit={createProduct}
+        onSubmit={e=>createProduct(e,navigate)}
         encType="multipart/form-data"
       >
         <div className="grid grid-cols-2 gap-x-12 gap-y-6 px-24 ">

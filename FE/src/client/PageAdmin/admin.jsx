@@ -1,6 +1,7 @@
 import SideBar from "./Sidebar";
 import NavBar from "./Navbar";
 import DashBoard from "./Dashboard";
+import { ToastContainer, toast } from "react-toastify";
 import { createBrowserRouter, Outlet } from "react-router";
 
 function adminPage() {
@@ -13,6 +14,7 @@ function adminPage() {
           <Outlet />
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

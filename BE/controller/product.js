@@ -4,6 +4,7 @@ import {
   getProduct,
   getProducts,
   handleDeleteProduct,
+  handleEdit,
 } from "../service/product.js";
 import { OK, CREATED } from "http-status-codes";
 export async function createProduct(req, res) {
@@ -37,4 +38,8 @@ export async function deleteProduct(req, res) {
     message: "delete successfully",
     products,
   });
+}
+export async function editProduct(req, res) {
+  let newproducts = await handleEdit(req.params.id,{image: req.file?.path,...req.body});
+  res.status(OK).send(newproducts);
 }
