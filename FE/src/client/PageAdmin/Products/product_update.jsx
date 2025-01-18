@@ -75,7 +75,7 @@ function ProductUpdate() {
       console.log(Product);
     }
   };
-
+  console.log(Product);
   useEffect(() => {
     async function fetchProduct() {
       try {
@@ -140,7 +140,7 @@ function ProductUpdate() {
           <Selector
             name="category"
             options={categories}
-            value={Product.categories}
+            value={Product.category}
             onChange={(e) =>
               setProduct({ ...Product, category: e.target.value })
             }
@@ -148,7 +148,7 @@ function ProductUpdate() {
           <Selector
             name="brand"
             options={brands}
-            value={Product.brands}
+            value={Product.brand}
             onChange={(e) => setProduct({ ...Product, brand: e.target.value })}
           />
 
