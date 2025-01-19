@@ -5,27 +5,29 @@ import cartStore from "../../store/cartStore";
 import Checkout from "./checkout";
 
 function Cart() {
-    const {cart: products,getCart,totalPrice,handleAdd,handleRemove}=cartStore()
+    const {cart: products,getCart,totalPrice,handleAdd,handleDecrease}=cartStore()
+    const cart=cartStore(state => state.cart)
     const [active,setActive]=useState(false)
     console.log(products);
     useEffect(() => {
-        axios
-            .get("http://localhost:5000/getProducts")
-            .then((response) => {
-                const productsWithQuantity = response.data.map((product) => ({
-                    description: product.description,
-                    descriptionShorten:
-                        product.description.length <= 80
-                            ? product.description
-                            : product.description.substring(0, 80) + "...",
-                    name: product.name,
-                    image: product.image,
-                    price: product.price,
-                    quantity: 1,
-                }));
-                getCart(productsWithQuantity);
-            })
-            .catch((err) => console.log(err));
+        // axios
+        //     .get("http://localhost:5000/getProducts")
+        //     .then((response) => {
+        //         const productsWithQuantity = response.data.map((product) => ({
+        //             description: product.description,
+        //             descriptionShorten:
+        //                 product.description.length <= 80
+        //                     ? product.description
+        //                     : product.description.substring(0, 80) + "...",
+        //             name: product.name,
+        //             image: product.image,
+        //             price: product.price,
+        //             quantity: 1,
+        //         }));
+        //         getCart(productsWithQuantity);
+        //     })
+        //     .catch((err) => console.log(err));
+        getCart(cart);
     }, []);
 
 
@@ -99,7 +101,7 @@ function Cart() {
                             <div>{product.quantity}</div>
                             <button
                                 className="btn-rmv"
-                                onClick={() => handleRemove(index)}
+                                onClick={() => handleDecrease(index)}
                             >
                                 {" "}
                                 -{" "}
