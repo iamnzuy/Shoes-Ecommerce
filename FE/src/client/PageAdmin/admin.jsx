@@ -10,7 +10,7 @@ function adminPage() {
       <NavBar />
       <div className="flex flex-row h-full ">
         <SideBar />
-        <div className="w-full h-full shadow-inner">
+        <div className="w-full h-fit shadow-inner">
           <Outlet />
         </div>
       </div>
