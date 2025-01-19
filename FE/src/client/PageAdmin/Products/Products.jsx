@@ -23,7 +23,7 @@ function DeleteConfirmation() {
   const { productToDelete, setProductToDelete, deleteProduct } =
     useProductStore();
   return (
-    <div className="w-full  border border-black shadow-inner  my-48">
+    <div className="w-full my-48">
       <div className="text-center  p-2 text-4xl bold">
         Are you sure you want to delete "{productToDelete.name}"?
       </div>

@@ -14,6 +14,7 @@ function ProductView() {
           `http://localhost:5000/products/single/${id}`
         );
         setProduct(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -24,22 +25,26 @@ function ProductView() {
   return (
     <div className="px-16 py-12">
       <h2>Product details</h2>
-      <div className="border mx-12 py-2  px-2 flex gap-10 shadow-inner">
+      <div className="mx-12 py-8  px-2 flex gap-10">
         <img className="w-96 h-96" src={Product.image}></img>
-        <div className="w-3/4 h-96 font-medium">
-          <h2>Name: {Product.name}</h2>
-          <p>Brand: {Product.brand}</p>
-          <p>Category: {Product.category}</p>
+        <div className="w-3/4 h-96 font-normal">
+          <h2>{Product.name}</h2>
           <p>
-            Price:{" "}
+            <span className="font-bold">Brand:</span> {Product.brand}
+          </p>
+          <p>
+            <span className="font-bold">Category:</span> {Product.category}
+          </p>
+          <p>
+            <span className="font-bold"> Price:</span>{" "}
             {Intl.NumberFormat("vi-VN", {
               style: "currency",
               currency: "VND",
             }).format(Product.price)}
           </p>
-          <div>
+          <div className="my-4">
             <h3>Description</h3>
-            <p>{Product.description}</p>
+            <div className="w-full">{Product.description}</div>
           </div>
           <button
             onClick={() => {

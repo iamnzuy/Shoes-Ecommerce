@@ -54,9 +54,8 @@ function ProductCreate() {
   const { createProduct } = useProductStore();
   // preview image khi upload file
   const [imagePreview, setImagePreview] = useState(null);
-  let navigate=useNavigate()
+  let navigate = useNavigate();
   const handleImageChange = (e) => {
-    console.log(imagePreview);
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
@@ -72,7 +71,7 @@ function ProductCreate() {
       </h2>
       <form
         id="productForm"
-        onSubmit={e=>createProduct(e,navigate)}
+        onSubmit={(e) => createProduct(e, navigate)}
         encType="multipart/form-data"
       >
         <div className="grid grid-cols-2 gap-x-12 gap-y-6 px-24 ">
@@ -88,7 +87,7 @@ function ProductCreate() {
             </label>
             <textarea
               name="description"
-              className="inputHighlight font-medium mt-1 px-3 py-2 bg-white border shadow-sm  border-slate-300 placeholder-slate-400 w-full rounded-md"
+              className="inputHighlight font-medium mt-1 py-2 px-4 bg-white border shadow-sm  border-slate-300 placeholder-slate-400 w-full h-48 rounded-md"
             ></textarea>
           </div>
 
