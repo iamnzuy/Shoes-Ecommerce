@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import Loader from "../../components/Loader";
 import cartStore from "../../store/cartStore";
 import useAuthStore from "../../store/authStore";
 import { toast, ToastContainer } from "react-toastify";
@@ -68,17 +69,19 @@ function ProductDetail() {
 
   if (loading) return <div>Loading...</div>;
   if (!product) return <div>Product not found</div>;
+  if (loading) return <Loader />;
+  if (!product) return <div>Product not found</div>;
 
   return (
     <>
-      <div className="mx-12 bg-slate-100 border rounded-xl flex flex-col">
+      <div className="mx-12 bg-slate-100 border rounded-xl flex flex-col my-2">
         <div className="flex flex-row justify-center gap-4 my-4">
           <div className="basis-5/12">
-            <div className="border rounded-2xl h-full w-fit p-2 shadow-inner">
+            <div className="border rounded-2xl  h-full w-full">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-96 h-96 rounded-2xl"
+                className="w-full h-full object-contain"
               />
             </div>
           </div>

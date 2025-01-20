@@ -7,7 +7,7 @@ export default function LoginPage()
     let {loginUser}=useAuthStore()
     let navigate=useNavigate()
     const [form, setForm] = useState({
-             email: '',
+            email: '',
             password:'',    
         });
     
