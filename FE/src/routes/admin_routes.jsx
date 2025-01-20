@@ -4,10 +4,11 @@ import ProductCreate from "../client/PageAdmin/Products/product_create";
 import ProductView from "../client/PageAdmin/Products/product_view";
 import ProductUpdate from "../client/PageAdmin/Products/product_update";
 import Admin from "../client/PageAdmin/admin";
+import { ProtectedAdmin } from "./ProtectedRoute";
 
 const adminRoutes = {
   path: "/admin",
-  element: <Admin />,
+  element: <ProtectedAdmin><Admin /></ProtectedAdmin>,
   children: [
     { path: "dashboard", element: <DashBoard /> },
     {

@@ -8,7 +8,7 @@ function Header(){
     return (
         <header className="sticky top-0 bg-white block py-2 my-2 border-b-2 shadow-md">
             <div className="flex flex-row justify-between">
-                <div>Logo</div>
+                <div>logo</div>
                 <nav className="">
                     <NavLink to="/client" className="mx-3 text-xl font-medium no-underline text-slate-900 hover:text-slate-600">Home</NavLink>
                     <NavLink to="/client/products" className="mx-3 text-xl font-medium no-underline text-slate-900 hover:text-slate-600">Products</NavLink>

@@ -18,7 +18,7 @@ export function verifyToken(req,res,next) {
 export function verifyRefreshToken(req,res,next) {
     let token=req.cookies.refreshToken;
     if (!token) {
-       throw new Error('session expried')
+       throw new Error('not found')
     }
     try {
        let decoded=jwt.verify(token,process.env.SECRET_KEY)
