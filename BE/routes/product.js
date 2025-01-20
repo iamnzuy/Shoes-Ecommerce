@@ -14,10 +14,10 @@ let Route = express.Router();
 
 Route.post("/create", upload.single("image"), checkProduct, createProduct);
 //, verifyToken, verifyAdmin
-Route.delete("/:id", deleteProduct);
+Route.delete("/:id", verifyToken, verifyAdmin, deleteProduct);
 Route.get("/all", sendAllProducts);
 Route.get("/single/:id", sendSingleProducts);
 Route.get("/", sendProducts);
-Route.put("/update/:id",upload.single('image'),editProduct);
+Route.put("/update/:id", upload.single("image"), editProduct);
 
 export default Route;

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
-import { notifyError,notifySuccess } from "../utils/toast";
+import { notifyError, notifySuccess } from "../utils/toast";
 
 // store
 const useProductStore = create((set) => ({
@@ -23,14 +23,14 @@ const useProductStore = create((set) => ({
       const response = await axios.delete(
         `http://localhost:5000/products/${productID}`
       );
-      notifySuccess('product deleted');
+      notifySuccess("Product deleted");
     } catch (error) {
       console.error(error);
       notifyError();
     }
   },
 
-  createProduct: async (e,navigate) => {
+  createProduct: async (e, navigate) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
@@ -39,33 +39,33 @@ const useProductStore = create((set) => ({
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-      notifySuccess('product created successfully');
-      navigate('/admin/products')
+      notifySuccess("Product created successfully");
+      navigate("/admin/products");
     } catch (error) {
       console.error(error);
       notifyError();
     }
   },
-  updateProduct: async (e,id,navigate) => {
+  updateProduct: async (e, id, navigate) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
       const response = await axios.put(
-        "http://localhost:5000/products/update/"+id,
+        "http://localhost:5000/products/update/" + id,
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-      set({products: response.data})
-      notifySuccess('product updated successfully');
-      navigate('/admin/products')
+      set({ products: response.data });
+      notifySuccess("Product updated successfully");
+      navigate("/admin/products");
     } catch (error) {
       console.error(error);
       notifyError();

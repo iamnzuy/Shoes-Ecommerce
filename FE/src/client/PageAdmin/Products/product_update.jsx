@@ -1,7 +1,7 @@
 import { useNavigate, Link } from "react-router";
 import { useState, React, useEffect } from "react";
 import { useParams } from "react-router";
-import useProductStore from '../../../store/productStore'
+import useProductStore from "../../../store/productStore";
 import axios from "axios";
 
 function Input(props) {
@@ -61,7 +61,7 @@ function ProductUpdate() {
   const [originalName, setOriginalName] = useState("");
   const [imagePreview, setImagePreview] = useState();
   const navigate = useNavigate();
-  const {updateProduct}=useProductStore()
+  const { updateProduct } = useProductStore();
 
   // image change preview
   const handleImageChange = (e) => {
@@ -72,10 +72,8 @@ function ProductUpdate() {
       setImagePreview(imageUrl);
       // Update product state with file
       setProduct({ ...Product, image: file });
-      console.log(Product);
     }
   };
-  console.log(Product);
   useEffect(() => {
     async function fetchProduct() {
       try {
@@ -98,7 +96,7 @@ function ProductUpdate() {
       </h2>
       <form
         id="productForm"
-        onSubmit={e=>updateProduct(e,id,navigate)}
+        onSubmit={(e) => updateProduct(e, id, navigate)}
         encType="multipart/form-data"
       >
         <div className="grid grid-cols-2 gap-x-12 gap-y-6 px-24 ">
@@ -126,7 +124,7 @@ function ProductUpdate() {
             </label>
             <textarea
               name="description"
-              className="inputHighlight font-medium mt-1 px-3 py-2 bg-white border shadow-sm  border-slate-300 placeholder-slate-400 w-full rounded-md"
+              className="inputHighlight font-medium mt-1 py-2 px-4 bg-white border shadow-sm  border-slate-300 placeholder-slate-400 w-full h-48 rounded-md"
               value={Product.description}
               onChange={(e) =>
                 setProduct({ ...Product, description: e.target.value })
