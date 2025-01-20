@@ -80,11 +80,13 @@ function ProductDetail() {
         <div className="flex flex-row justify-center gap-4 my-4">
           <div className="basis-5/12">
             <div className="border rounded-2xl  h-full w-full">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-contain"
-              />
+              <a href="#">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-contain"
+                />
+              </a>
             </div>
           </div>
 
@@ -102,11 +104,11 @@ function ProductDetail() {
                 Category: {product.category}
               </h3>
             </div>
-            <div>
+            {/* <div>
               <h3 className="text-md my-2">
                 Short description: {product.short_description}
               </h3>
-            </div>
+            </div> */}
             <div>
               <h3 className="mb-2 text-3xl font-bold text-gray-900 my-4 text-wrap">
                 {formatPrice(product.price * quantity)} <span>&#8363;</span>
@@ -138,9 +140,9 @@ function ProductDetail() {
                 >
                   <i className="fa fa-minus"></i>
                 </button>
-                <span className="text-sm text-gray-900 mx-4">
+                {/* <span className="text-sm text-gray-900 mx-4">
                   Available: {product.stock}
-                </span>
+                </span> */}
               </div>
               <button
                 type="submit"

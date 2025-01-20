@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { isEmail } from "../../utils/email";
 import useAuthStore from "../../store/authStore";
 import { useNavigate } from "react-router";
+import { ToastContainer } from "react-toastify";
 export default function RegisterPage() {
   let {registerUser}=useAuthStore()
   let navigate=useNavigate()
@@ -140,6 +141,7 @@ export default function RegisterPage() {
             </Link>
         </p>
     </form>
+    <ToastContainer />
 </div>
 
   );

@@ -16,7 +16,7 @@ const clientRoutes = {
     { path: "contact", element: <Contact /> },
     {
       path: "cart",
-      element: <Cart />,
+      element: <ProtectedRoute><Cart /></ProtectedRoute>,
     },
   ],
 };
