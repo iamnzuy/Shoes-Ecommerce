@@ -14,11 +14,7 @@ const clientRoutes = {
     { path: "products/:pid", element: <ProductDetail /> },
     {
       path: "cart",
-      element: (
-        <ProtectedRoute>
-          <Cart />
-        </ProtectedRoute>
-      ),
+      element: <Cart />,
     },
   ],
 };
