@@ -15,8 +15,8 @@ const useAuthStore = create(
             email,
             password,
           });
-          let { accessToken, refreshToken, ...user } = response.data;
-          set({ accessToken, refreshToken, user });
+          let { accessToken, ...user } = response.data;
+          set({ accessToken,user });
           notifySuccess("login successfully");
           navigate("/client");
         } catch (error) {
