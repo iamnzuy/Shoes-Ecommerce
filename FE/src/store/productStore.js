@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import axios from "axios";
 import { notifyError, notifySuccess } from "../utils/toast";
+import axiosInstance from "../utils/axios";
 
 // store
 const useProductStore = create((set) => ({
@@ -8,7 +8,7 @@ const useProductStore = create((set) => ({
   productToDelete: "",
   fetchProducts: async () => {
     try {
-      const response = await axios.get("http://localhost:5000/products/all");
+      const response = await axiosInstance.get("/products/all");
       set({ products: response.data });
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -20,9 +20,11 @@ const useProductStore = create((set) => ({
 
   deleteProduct: async (productID) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/products/${productID}`
+      const response = await axiosInstance.delete(
+        `/products/${productID}`
       );
+      console.log(response.data);
+      set({ products: response.data });
       notifySuccess("Product deleted");
     } catch (error) {
       console.error(error);
@@ -34,8 +36,8 @@ const useProductStore = create((set) => ({
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
-      const response = await axios.post(
-        "http://localhost:5000/products/create",
+      const response = await axiosInstance.post(
+        "/products/create",
         formData,
         {
           headers: {
@@ -47,15 +49,15 @@ const useProductStore = create((set) => ({
       navigate("/admin/products");
     } catch (error) {
       console.error(error);
-      notifyError();
+      notifyError(error.response?.data?.message);
     }
   },
   updateProduct: async (e, id, navigate) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
-      const response = await axios.put(
-        "http://localhost:5000/products/update/" + id,
+      const response = await axiosInstance.put(
+        "/products/update/" + id,
         formData,
         {
           headers: {

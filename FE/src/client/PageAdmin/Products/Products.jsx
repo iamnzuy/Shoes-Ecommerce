@@ -78,9 +78,9 @@ function Products() {
     fetchProducts,
     productToDelete,
   } = useProductStore();
-  useEffect(() => async () => {
-    await fetchProducts();
-  });
+  useEffect(() =>  {
+    fetchProducts();
+  },[]);
 
   return (
     <div className="w-full px-16 ">

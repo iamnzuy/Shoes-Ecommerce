@@ -18,7 +18,8 @@ export async function getProducts(page=1,limit=5) {
   return products;
 }
 export async function handleDeleteProduct(id) {
-  let products=await productModel.findByIdAndDelete(id,{new: true})
+  await productModel.findByIdAndDelete(id,{new: true})
+  let products=productModel.find({},{__v: 0})
   return products;
 }
 export async function handleEdit(id,body) {

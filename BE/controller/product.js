@@ -34,10 +34,7 @@ export async function sendProducts(req, res) {
 }
 export async function deleteProduct(req, res) {
   let products = await handleDeleteProduct(req.params.id);
-  res.status(OK).send({
-    message: "delete successfully",
-    products,
-  });
+  res.status(OK).send(products);
 }
 export async function editProduct(req, res) {
   let newproducts = await handleEdit(req.params.id,{image: req.file?.path,...req.body});
