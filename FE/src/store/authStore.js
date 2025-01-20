@@ -12,6 +12,7 @@ const useAuthStore = create(
       async loginUser({email,password},navigate) {
          try {
           let response=await axiosInstance.post('/auth/login',{email,password})
+          .catch((err) => {console.log(err)});
           let {accessToken,refreshToken,...user}=response.data
           set({ accessToken, refreshToken,user })
           notifySuccess('login successfully')
@@ -33,7 +34,8 @@ const useAuthStore = create(
      },
      async refreshToken() {
       try {
-        let response=await axios.get('http://localhost:5000/auth/refreshToken');
+        let response=await axios.get('/auth/refreshToken');
+        console.log(response)
         return response
       } catch (error) {
         console.log(error);

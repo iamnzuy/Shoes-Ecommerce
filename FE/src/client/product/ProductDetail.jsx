@@ -77,13 +77,13 @@ function ProductDetail(){
 
     return (
     <>
-        <div className="mx-12 bg-slate-100 border rounded-xl flex flex-col">
+        <div className="mx-12 bg-slate-100 border rounded-xl flex flex-col my-2">
             <div className="flex flex-row justify-center gap-4 my-4">
                 <div className="basis-5/12">
-                    <div className="border rounded-2xl">
-                        <a href="#">
-                            <img src={product.image} alt={product.name}  />
-                        </a>
+                    <div className="border rounded-2xl  h-full w-full">
+                        
+                            <img src={product.image} alt={product.name} className="w-full h-full object-contain"  />
+                        
                     </div>
                 </div>
                 
