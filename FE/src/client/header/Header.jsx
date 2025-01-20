@@ -1,13 +1,17 @@
 import { NavLink, Link } from "react-router";
 import useAuthStore from "../../store/authStore";
-
+import "./Header.css";
 // import BreadCrumb from "./BreadCrumb"
 
 // for testing purpose
 
 function Header() {
-  const user = useAuthStore();
-
+  const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout)
+  const handleLogout = () => {
+    logout();
+  }
+  console.log(user)
   return (
     <header className="sticky top-0 bg-white block z-50">
       <div className="flex flex-row justify-between px-32 items-center py-2 border-b-2 ">
@@ -49,7 +53,15 @@ function Header() {
               Login
             </NavLink>
           ) : (
-            ""
+            <>
+                    <div className="dropdown px-2 mx-2">
+                        <button className="">{user.username}</button>
+                        <div className="dropdown-content bg-slate-100">
+                            {(user.role === "admin") ? (<NavLink to="/admin/dashboard" className="py-2 px-4 hover:bg-slate-300 block">Profile</NavLink>) : <></>}
+                            <button className="hover:bg-slate-300 block py-2 px-4" onClick={handleLogout}>Logout</button>
+                        </div>
+                    </div>
+            </>
           )}
           <p>"User image"</p>
         </nav>

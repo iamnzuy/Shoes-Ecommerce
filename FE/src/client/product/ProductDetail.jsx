@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Loader from "../../components/Loader";
 import cartStore from "../../store/cartStore";
 import useAuthStore from "../../store/authStore";
@@ -12,9 +12,10 @@ function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const logout = useAuthStore((state) => state.logout);
+  const user = useAuthStore((state) => state.user);
   const addToCart = cartStore((state) => state.addToCart);
   const cart = cartStore((state) => state.cart);
+  const navigate = useNavigate();
 
   axios.defaults.baseURL = "http://localhost:5000";
   const { pid } = useParams();
@@ -52,7 +53,10 @@ function ProductDetail() {
 
   const handleAddToCart = (e) => {
     e.preventDefault();
-
+    if (!user){
+      toast.warn("You have to login to add item to cart!", { autoClose: 3000 });
+      navigate("/login");
+    }
     const item = {
       ...product,
       quantity: quantity,
