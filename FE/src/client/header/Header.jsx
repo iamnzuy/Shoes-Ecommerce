@@ -12,7 +12,7 @@ function Header() {
     <header className="sticky top-0 bg-white block z-50">
       <div className="flex flex-row justify-between px-32 items-center py-2 border-b-2 ">
         <div>
-          <img src={`/logo.png`} alt="logo" className="w-36 h-14"></img>
+          <Link to={'/'}><img src={`/logo.png`} alt="logo" className="w-36 h-14"></img></Link> 
         </div>
         <nav className="flex flex-row">
           <NavLink
