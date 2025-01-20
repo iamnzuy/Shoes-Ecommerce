@@ -67,8 +67,6 @@ function ProductDetail() {
     getItem();
   }, [pid]);
 
-  if (loading) return <div>Loading...</div>;
-  if (!product) return <div>Product not found</div>;
   if (loading) return <Loader />;
   if (!product) return <div>Product not found</div>;
 
