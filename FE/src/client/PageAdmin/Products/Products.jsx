@@ -50,15 +50,8 @@ function DeleteConfirmation() {
   );
 }
 
-function ProductList() {
-  const { products, setProductToDelete, deleteProduct, fetchProducts } =
-    useProductStore();
-  useEffect(
-    () => async () => {
-      await fetchProducts();
-    },
-    []
-  );
+function ProductList(props) {
+  const products = props.products;
   return (
     <>
       {products.map((product, index) => (
@@ -78,8 +71,17 @@ function ProductList() {
 }
 
 function Products() {
-  const { productToDelete, deleteProduct } = useProductStore();
-  const { isDelete, setIsDelete } = useState(true);
+  const {
+    products,
+    setProductToDelete,
+    deleteProduct,
+    fetchProducts,
+    productToDelete,
+  } = useProductStore();
+  useEffect(() => async () => {
+    await fetchProducts();
+  });
+
   return (
     <div className="w-full px-16 ">
       {productToDelete != "" ? (
@@ -97,7 +99,7 @@ function Products() {
           <table className="w-full">
             <ProductHeader />
             <tbody>
-              <ProductList />
+              <ProductList products={products} />
             </tbody>
           </table>
         </>

@@ -6,13 +6,12 @@ function adminPage() {
   return (
     <div className="flex flex-col h-screen bg-gray-50">
       <NavBar />
-      <div className="flex flex-row h-full ">
+      <div className="flex flex-row h-full">
         <SideBar />
         <div className="w-full h-fit shadow-inner">
           <Outlet />
         </div>
       </div>
-     
     </div>
   );
 }

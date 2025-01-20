@@ -16,14 +16,13 @@ const useAuthStore = create(
             password,
           });
           let { accessToken, ...user } = response.data;
-          set({ accessToken,user });
+          set({ accessToken, user });
           notifySuccess("login successfully");
-          navigate("/client");
+          navigate("/");
         } catch (error) {
           console.log(error);
           notifyError(error.response?.data?.message);
         }
-        
       },
       async registerUser({ username, email, password }, navigate) {
         try {

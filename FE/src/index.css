@@ -25,6 +25,20 @@
   td {
     text-align: center;
   }
+  .linkBase {
+    @apply mx-2 text-base w-fit h-fit py-1 px-4 font-medium no-underline text-blue-600 transition-all duration-500;
+  }
+  .linkBase:hover {
+    border-radius: 40px;
+    background-color: skyblue;
+  }
+  .linkActive {
+    @apply mx-2 text-base  w-fit h-fit py-1 px-4 font-medium no-underline text-red-600 transition-all duration-500;
+  }
+  .linkActive:hover {
+    border-radius: 40px;
+    background-color: skyblue;
+  }
 }
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
