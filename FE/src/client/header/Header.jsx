@@ -1,9 +1,9 @@
 import { NavLink, Link } from "react-router";
 import useAuthStore from "../../store/authStore";
 import "./Header.css";
-// import BreadCrumb from "./BreadCrumb"
 
-// for testing purpose
+
+
 
 function Header() {
   const user = useAuthStore((state) => state.user);
@@ -11,7 +11,7 @@ function Header() {
   const handleLogout = () => {
     logout();
   }
-  console.log(user)
+  
   return (
     <header className="sticky top-0 bg-white block z-50">
       <div className="flex flex-row justify-between px-32 items-center py-2 border-b-2 ">
