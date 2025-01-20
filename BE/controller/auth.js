@@ -3,6 +3,7 @@ import {
   addingUser,
   handle_checkOTP,
   handlechangePassword,
+  handleCheckAuth,
   handleLogin,
   handleRefreshToken,
   sendToken,
@@ -43,4 +44,8 @@ export async function resetPass(req, res) {
 export async function refreshToken(req, res) {
   let newToken = handleRefreshToken(req.user, res);
   res.status(OK).send(newToken);
+}
+export async function checkAuth(req, res) {
+  let user=await handleCheckAuth(req)
+  res.status(OK).send(user);
 }

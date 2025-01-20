@@ -4,6 +4,7 @@ import { generateToken } from "../utils/generateToken.js";
 import generateOTP from "../utils/generateOTP.js";
 import {transporter} from '../utils/nodemailer.js'
 import { VERIFICATION_EMAIL_TEMPLATE } from "../utils/template.js";
+
 export async function addingUser({ password, ...others }) {
   let hasedPassword = await bcrypt.hash(password, 10);
   let user = await new userModel({ password: hasedPassword, ...others }).save();
@@ -70,4 +71,9 @@ export function handleRefreshToken(user, res) {
     maxAge: 7 * 24 * 60 * 60 * 1000
   });
   return { accessToken};
+}
+export async function handleCheckAuth(req) {
+  let response=await userModel.findById(req.user.id)
+  let {password,...detail}=response._doc
+  return detail;
 }

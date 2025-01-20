@@ -68,7 +68,6 @@ const cartStore = create(
     },
     calculateTotalPrice() {
         let total=get().cart.reduce((acc,item)=>acc+item.price*item.quantity,0)
-        console.log(total);
         set({totalPrice: total})
     }
 }),
