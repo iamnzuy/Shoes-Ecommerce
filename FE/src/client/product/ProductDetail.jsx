@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import Loader from "../../components/Loader";
 import cartStore from "../../store/cartStore";
 import useAuthStore from '../../store/authStore';
 import {toast, ToastContainer} from 'react-toastify'
@@ -72,7 +73,7 @@ function ProductDetail(){
         getItem();
     }, [pid]);
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <Loader />
     if (!product) return <div>Product not found</div>
 
     return (
