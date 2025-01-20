@@ -55,7 +55,7 @@ function Header() {
           ) : (
             <>
                     <div className="dropdown px-2 mx-2">
-                        <button className="">{user.username}</button>
+                        <button className="py-1 px-4 hover:bg-slate-100 rounded-t-xl">{user.username}</button>
                         <div className="dropdown-content bg-slate-100">
                             {(user.role === "admin") ? (<NavLink to="/admin/dashboard" className="py-2 px-4 hover:bg-slate-300 block">Profile</NavLink>) : <></>}
                             <button className="hover:bg-slate-300 block py-2 px-4" onClick={handleLogout}>Logout</button>
