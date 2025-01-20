@@ -8,7 +8,6 @@ let axiosInstance=axios.create({
 })
 
 
-
 axiosInstance.interceptors.request.use(
   async (config) => {
     const token = useAuthStore.getState().accessToken;
@@ -16,7 +15,7 @@ axiosInstance.interceptors.request.use(
       let decoded=jwtDecode(token)
       if (decoded?.exp*1000<Date.now()) {
          let res=await useAuthStore.getState().refreshToken()
-         if (res.data?.accessToken) {
+         if (res?.data?.accessToken) {
           config.headers.token = `Bearer ${res.data?.accessToken}`;
           useAuthStore.getState().setTokens(res.data?.accessToken)
         }

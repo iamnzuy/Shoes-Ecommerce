@@ -1,0 +1,12 @@
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+}
+
+.dropdown {
+    display: inline-block;
+}
