@@ -54,16 +54,16 @@ function ProductCard(props) {
         </Link>
         <Link
           to={`update/${props.id}`}
-          className="flex flex-row items-center gap-2 no-underline mx-2 px-2 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 "
+          className="flex flex-row items-center gap-2 no-underline mx-2 px-2 py-2 text-sm font-medium leading-5 text-gray-600 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 "
         >
-          <FaPenToSquare />
+          <FaPenToSquare className="text-gray-600" />
           Update
         </Link>
         <button
           onClick={async () => {
             setProductToDelete(props);
           }}
-          className="flex flex-row items-center gap-2 no-underline px-2 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700"
+          className="flex flex-row items-center gap-2 no-underline px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700"
         >
           <FaRegTrashCan />
           Delete
