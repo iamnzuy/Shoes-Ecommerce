@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import ProductCard from "./product_card";
 import { Link } from "react-router";
 import useProductStore from "../../../store/productStore.js";
+import axiosInstance from "../../../utils/axios.js";
+import Pagination from "../../../components/Pagination.jsx";
 
 function ProductHeader() {
   return (
@@ -51,10 +53,9 @@ function DeleteConfirmation() {
 }
 
 function ProductList(props) {
-  const products = props.products;
   return (
     <>
-      {products.map((product, index) => (
+      {props.products.map((product, index) => (
         <ProductCard
           key={index + 1}
           number={index + 1}
@@ -71,17 +72,25 @@ function ProductList(props) {
 }
 
 function Products() {
-  const {
-    products,
-    setProductToDelete,
-    deleteProduct,
-    fetchProducts,
-    productToDelete,
-  } = useProductStore();
-  useEffect(() =>  {
-    fetchProducts();
-  },[]);
-
+  const { productToDelete } = useProductStore();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [products, setProducts] = useState([]);
+  const [totalPage, setTotalPage] = useState();
+  useEffect(() => {
+    const fetchByPage = async () => {
+      try {
+        const response = await axiosInstance
+          .get(`/products/?page=${currentPage}&limit=5`)
+          .then((res) => {
+            setProducts(res.data.products);
+            setTotalPage(res.data.totalPage);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchByPage();
+  }, [currentPage]);
   return (
     <div className="w-full px-16 ">
       {productToDelete != "" ? (
@@ -102,6 +111,11 @@ function Products() {
               <ProductList products={products} />
             </tbody>
           </table>
+          <Pagination
+            totalPage={totalPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         </>
       )}
     </div>
