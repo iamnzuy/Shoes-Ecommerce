@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import { useEffect } from "react";
 import Header from "../header/Header";
 import useProductStore from "../../store/productStore";
+import BreadCrumb from "../Header/BreadCrumb";
 
 function Home() {
   const {fetchProducts} = useProductStore();
@@ -12,6 +13,7 @@ function Home() {
   return (
     <div>
       <Header />
+      <BreadCrumb />
       <Outlet />
     </div>
   );

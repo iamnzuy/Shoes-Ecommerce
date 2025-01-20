@@ -3,14 +3,16 @@ import { useEffect } from "react";
 import ProductCard from "./ProductCard";
 
 function Show() {
-  const { fetchProducts, products } = useProductStore();
+  const { fetchProducts , products } = useProductStore();
+  // const = useProductStore(state => state.fetchProducts());
   useEffect(
-    () => async () => {
-      await fetchProducts();
-    },
-    []
+    () => () =>  {
+      fetchProducts();
+    }
+    ,
+    [products]
   );
-  console.log(products);
+  // console.log(products);
   return (
     <div className="flex flex-row flex-wrap gap-4 justify-between my-12 border">
       {products.map((product, index) => (

@@ -8,8 +8,10 @@ const useProductStore = create((set) => ({
   productToDelete: "",
   fetchProducts: async () => {
     try {
-      const response = await axiosInstance.get("/products/all");
-      set({ products: response.data });
+      const response = await axiosInstance.get("/products/all")
+      .catch((err) => console.log(err))
+      .then((res) => set({products:res.data}));
+      // set({ products: response.data });
     } catch (error) {
       console.error("Error fetching products:", error);
     }
