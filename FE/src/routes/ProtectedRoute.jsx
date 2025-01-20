@@ -16,14 +16,14 @@ export function ProtectedAdmin({children}) {
     let {user}=useAuthStore()
     if (user?.role!='admin') {
         notifyError('you are not allowed to access')
-        return <Navigate to={'/client'}/>
+        return <Navigate to={'/'}/>
     }
   return children;
 }
 export function RedirectUser({children}) {
     let {user}=useAuthStore()
     if (user) {
-        return <Navigate to={'/client'}/>
+        return <Navigate to={'/'}/>
     }
   return children;
 }

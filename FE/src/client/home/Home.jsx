@@ -5,7 +5,7 @@ import useProductStore from "../../store/productStore";
 import BreadCrumb from "../Header/BreadCrumb";
 
 function Home() {
-  const fetchProducts = useProductStore();
+  const {fetchProducts} = useProductStore();
   useEffect(() => async () => {
     await fetchProducts();
   });
