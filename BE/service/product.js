@@ -15,7 +15,8 @@ export async function getProduct(id) {
 //PAGINATION
 export async function getProducts(page=1,limit=5) {
   let products=await productModel.find({},{__v: 0}).skip(limit*(page-1)).limit(limit)
-  return products;
+  let length=await productModel.countDocuments()
+  return{ products,page,totalPage: Math.ceil(length/limit)};
 }
 export async function handleDeleteProduct(id) {
   await productModel.findByIdAndDelete(id,{new: true})
