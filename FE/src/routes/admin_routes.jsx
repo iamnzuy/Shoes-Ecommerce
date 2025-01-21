@@ -1,4 +1,5 @@
 import DashBoard from "../client/PageAdmin/Dashboard";
+import Order from "../client/PageAdmin/Orders/Orders";
 import Products from "../client/PageAdmin/Products/Products";
 import ProductCreate from "../client/PageAdmin/Products/product_create";
 import ProductView from "../client/PageAdmin/Products/product_view";
@@ -8,7 +9,11 @@ import { ProtectedAdmin } from "./ProtectedRoute";
 
 const adminRoutes = {
   path: "/admin",
-  element: <ProtectedAdmin><Admin /></ProtectedAdmin>,
+  element: (
+    <ProtectedAdmin>
+      <Admin />
+    </ProtectedAdmin>
+  ),
   children: [
     { path: "dashboard", element: <DashBoard /> },
     {
@@ -18,6 +23,7 @@ const adminRoutes = {
     { path: "products/create", element: <ProductCreate /> },
     { path: "products/view/:id", element: <ProductView /> },
     { path: "products/update/:id", element: <ProductUpdate /> },
+    { path: "order", element: <Order /> },
   ],
 };
 
