@@ -12,12 +12,11 @@ import {
 } from "../controller/product.js";
 let Route = express.Router();
 
-Route.post("/create", upload.single("image"), checkProduct, createProduct);
-//, verifyToken, verifyAdmin
+Route.post("/create",verifyToken, verifyAdmin,upload.single("image"), checkProduct, createProduct);
 Route.delete("/:id", verifyToken, verifyAdmin, deleteProduct);
 Route.get("/all", sendAllProducts);
 Route.get("/single/:id", sendSingleProducts);
 Route.get("/", sendProducts);
-Route.put("/update/:id", upload.single("image"), editProduct);
+Route.put("/update/:id",verifyToken, verifyAdmin,upload.single("image"), editProduct);
 
 export default Route;
