@@ -23,7 +23,8 @@ hr {
     margin-bottom: 60px;
 }
 
-.cart-items-container, .cart-items-headers-container {
+.cart-items-container,
+.cart-items-headers-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +32,8 @@ hr {
     margin-top: 20px;
 }
 
-.cart-items, .cart-items-headers {
+.cart-items,
+.cart-items-headers {
     display: flex;
     flex-direction: row;
     /* align-items: center; */
@@ -44,7 +46,8 @@ hr {
     margin-bottom: 20px;
 }
 
-.cart-items-header, .cart-item {
+.cart-items-header,
+.cart-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,19 +59,26 @@ hr {
     font-weight: bold;
 }
 
-#cart-item-info, #cart-item-info-header {
-    width: 30%;;
+#cart-item-info,
+#cart-item-info-header {
+    width: 30%;
 }
 
 #cart-item-info div {
     width: 100%;
 }
 
-#cart-item-quantity, #cart-item-quantity-header {
+#cart-item-quantity,
+#cart-item-quantity-header {
     width: 10%;
 }
 
-#cart-item-img, #cart-item-img-header, #cart-item-price, #cart-item-price-header, #cart-item-price-total, #cart-item-price-total-header {
+#cart-item-img,
+#cart-item-img-header,
+#cart-item-price,
+#cart-item-price-header,
+#cart-item-price-total,
+#cart-item-price-total-header {
     width: 20%;
 }
 
@@ -81,19 +91,23 @@ hr {
     font-weight: bold;
 }
 
-#cart-item-quantity, #cart-item-price, #cart-item-price-total {
+#cart-item-quantity,
+#cart-item-price,
+#cart-item-price-total {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-#cart-item-price, #cart-item-price-total {
+#cart-item-price,
+#cart-item-price-total {
     font-size: 20px;
     font-weight: bold;
 }
 
-.btn-add, .btn-rmv {
+.btn-add,
+.btn-rmv {
     color: #111;
     cursor: pointer;
     display: inline-block;
@@ -102,15 +116,14 @@ hr {
     line-height: 29px;
     padding: 0 10px;
     text-align: center;
-    width: 40px
+    width: 40px;
 }
 
 img {
-    width:  100px;
+    width: 100px;
     height: 100px;
     border-radius: 4px;
 }
-
 
 .cart-checkout-info {
     /* background-color: #ff3e3e; */
@@ -148,7 +161,7 @@ img {
 }
 
 #cart-checkout-btn {
-    transition: .2s;
+    transition: 0.2s;
     background-color: var(--tertiary-color);
     color: #fff;
     font-weight: 600;
@@ -160,8 +173,9 @@ img {
     width: 240px;
 }
 
-#cart-checkout-btn:hover, #cart-close-payment-btn:hover {
-    transition: .2s;
+#cart-checkout-btn:hover,
+#cart-close-payment-btn:hover {
+    transition: 0.2s;
     background-color: #ffb247;
 }
 
@@ -169,7 +183,7 @@ img {
     z-index: 1000;
     position: fixed;
     top: 0;
-    background-color : rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: none;
     flex-direction: column;
     align-items: center;
@@ -210,7 +224,6 @@ img {
     /* height: 80%; */
 }
 
-
 .cart-payment-info-container {
     display: flex;
     flex-direction: column;
@@ -239,11 +252,6 @@ img {
     padding-left: 3vw;
 }
 
-input[type="radio"] {
-    transform: scale(1.5);
-    margin-right: 1vw;
-}
-
 .cart-close-payment-btn-container {
     display: flex;
     flex-direction: row;
@@ -268,33 +276,40 @@ input[type="radio"] {
     cursor: pointer;
 }
 
+input[type="radio"] {
+    transform: scale(1.5);
+    margin-right: 1vw;
+}
+
 .input-group {
     margin-top: 0.25rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
-  }
-  
-  .input-group input {
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.input-group input {
+    width: 90%;
     border-radius: 0.375rem;
     border: 1px solid --tertiary-color;
     background-color: rgb(231, 231, 231);
     margin: 0 2vw;
     padding: 1.5vh 1vw;
-    color: var(--tertiary-color)
-  }
+    color: var(--tertiary-color);
+}
 
-  .cart-payment-checkout-btn-container {
+.cart-payment-checkout-btn-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 4vh;
     margin-bottom: 2vh;
-  }
-
+}
 
 #cart-payment-checkout-btn {
-    transition: .2s;
+    transition: 0.2s;
     background-color: var(--tertiary-color);
     color: #fff;
     font-size: 1.3vw;
@@ -309,18 +324,30 @@ input[type="radio"] {
 }
 
 #cart-payment-checkout-btn:hover {
-    transition: .2s;
+    transition: 0.2s;
     background-color: #ffb247;
 }
 
-#cvc {
+#cvc, #exp {
     width: 50%;
 }
-
 
 .cart-payment-info-subheader-exp {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+#cvc-input, #exp-input {
+    width: 16vw;
+    margin: 0;
+}
+
+#cvc-input {
+    margin-right: 2vw;
+}
+
+#exp-input {
+    margin-left: 2vw;
 }

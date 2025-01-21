@@ -42,11 +42,11 @@ function Checkout({ active, setActive }) {
             </div>
             <div className="cart-payment-info-subheader">Card number</div>
             <div className="input-group">
-              <input type="text" name="username" id="username" placeholder="" />
+              <input type="text" name="card-num" id="card-num" placeholder="" />
             </div>
             <div className="cart-payment-info-subheader-exp-container">
               <div className="cart-payment-info-subheader-exp">
-                <div className="cart-payment-info-subheader">Expiration date</div>
+                <div id="exp" className="cart-payment-info-subheader">Expiration date</div>
                 <div id="cvc" className="cart-payment-info-subheader">
                   CVC
                 </div>
@@ -55,10 +55,10 @@ function Checkout({ active, setActive }) {
             <div className="cart-payment-info-subheader-exp-container">
               <div className="cart-payment-info-subheader-exp">
                 <div className="input-group">
-                  <input type="text" name="username" id="username" placeholder="" />
+                  <input type="text" name="username" id="exp-input" placeholder="" />
                 </div>
                 <div className="input-group">
-                  <input type="text" name="username" id="username" placeholder="" />
+                  <input type="text" name="username" id="cvc-input" placeholder="" />
                 </div>
               </div>
             </div>
