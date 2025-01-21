@@ -3,6 +3,7 @@ import { useState, React, useEffect } from "react";
 import { useParams } from "react-router";
 import useProductStore from "../../../store/productStore";
 import axios from "axios";
+import axiosInstance from "../../../utils/axios";
 
 function Input(props) {
   return (
@@ -77,8 +78,8 @@ function ProductUpdate() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/products/single/${id}`
+        const response = await axiosInstance.get(
+          `/products/single/${id}`
         );
         setProduct(response.data);
         setOriginalName(response.data.name);

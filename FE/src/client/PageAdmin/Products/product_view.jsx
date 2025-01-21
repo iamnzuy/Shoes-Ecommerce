@@ -1,7 +1,7 @@
 import { Navigate, useNavigate } from "react-router";
 import { useState, React, useEffect } from "react";
 import { useParams } from "react-router";
-import axios from "axios";
+import axiosInstance from "../../../utils/axios";
 function ProductView() {
   const { id } = useParams();
   const [Product, setProduct] = useState({});
@@ -10,8 +10,8 @@ function ProductView() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/products/single/${id}`
+        const response = await axiosInstance.get(
+          `/single/${id}`
         );
         setProduct(response.data);
       } catch (error) {

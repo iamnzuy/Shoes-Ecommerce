@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {Link, useNavigate} from 'react-router'
 import {isEmail} from '../../utils/email'
 import useAuthStore from "../../store/authStore";
-import { ToastContainer } from "react-toastify";
 export default function LoginPage()
 {
     let {loginUser}=useAuthStore()
@@ -104,7 +103,7 @@ export default function LoginPage()
                 </Link>
             </p>
         </form>
-        <ToastContainer />
+       
     </div>
     
     );
