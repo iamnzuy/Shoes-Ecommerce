@@ -1,0 +1,125 @@
+:root {
+    --primary-color: #111;
+    --secondary-color: #fff;
+    --tertiary-color: #f84814;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.row-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-flex-container-100 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+
+.col-flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-flex-container-80 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+#error-contents {
+    font-size: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+}
+
+
+#error-contents h1 {
+    font-size: 1.5%;
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 10px 20px;
+}
+
+#error-contents p {
+    font-size: 1%;
+    font-weight: 400;
+    color: var(--primary-color);
+    margin-bottom: 20px
+}
+
+#main-text {
+    font-size: 14%;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+#bracket {
+    color: var(--tertiary-color);
+}
+
+#cart-checkout-btn {
+    transition: 0.2s;
+    background-color: var(--tertiary-color);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2%;
+    border-radius: 0.5vw;
+    padding: 10px 20px;
+    width: 16%;
+    margin: 20px 0;
+}
+
+#or {
+    padding: 0 20px;   
+}
+
+#dosomething {
+    transition: .5s;
+    background-color: #fff;
+    border-width: 2px;
+    border-style: dashed;
+    border-color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.2%;
+    border-radius: 0.5vw;
+    padding: 1px 2px;
+    width: 16%;
+}
+
+#dosomething a {
+    transition: .2s;
+    display:  none;
+}
+
+#dosomething:hover {
+    transition: 5s;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    a {
+        transition: 6s;
+        z-index: inherit;
+        color: var(--secondary-color);
+        display: block;
+    }
+}
+   
