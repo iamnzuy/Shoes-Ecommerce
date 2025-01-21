@@ -81,10 +81,7 @@ function StoreTab() {
         </li>
         <li className="px-2 py-1  transition-colors ">
           {/* change to router link later */}
-          <Link
-            className="w-full text-base text-gray-500 no-underline duration-150 hover:text-gray-800"
-            to="voucher"
-          >
+          <Link className="w-full text-base text-gray-500 no-underline duration-150 hover:text-gray-800">
             Voucher
           </Link>
         </li>
