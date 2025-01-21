@@ -53,7 +53,7 @@ function ProductDetail() {
 
   const handleAddToCart = (e) => {
     e.preventDefault();
-    if (!user){
+    if (!user) {
       toast.warn("You have to login to add item to cart!", { autoClose: 3000 });
       navigate("/login");
     }
@@ -79,12 +79,12 @@ function ProductDetail() {
       <div className="mx-12 bg-slate-100 border rounded-xl flex flex-col my-2">
         <div className="flex flex-row justify-center gap-4 my-4">
           <div className="basis-5/12">
-            <div className="border rounded-2xl  h-full w-full">
+            <div className="border rounded-2xl w-fit h-fit p-4 mx-auto">
               <a href="#">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-contain"
+                  className="w-96 h-96"
                 />
               </a>
             </div>
