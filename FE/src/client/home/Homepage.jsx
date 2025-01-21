@@ -48,6 +48,7 @@ function AdidasShoes(props) {
 }
 
 function PumaShoes(props) {
+  
   const pumaProducts = props.products.filter(
     (product) => product.brand === "Puma"
   );

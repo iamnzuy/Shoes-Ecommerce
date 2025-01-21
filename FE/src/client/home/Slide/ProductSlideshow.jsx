@@ -18,6 +18,7 @@ function ProductSlideshow(props) {
               image={product.image}
               price={product.price}
               name={product.name}
+              id={product._id}
             />
           </SwiperSlide>
         ))}

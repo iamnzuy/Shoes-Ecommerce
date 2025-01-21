@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 
 function ProductCard(props) {
+ 
   return (
     <Link
       to={`/products/${props.id}`}

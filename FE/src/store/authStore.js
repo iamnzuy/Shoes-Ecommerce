@@ -31,8 +31,8 @@ const useAuthStore = create(
             email,
             password,
           });
-          notifySuccess("account created successfully");
           navigate("/login");
+          notifySuccess("account created successfully");
         } catch (error) {
           console.log(error);
           notifyError(error.response?.data?.message);
@@ -51,11 +51,14 @@ const useAuthStore = create(
       setTokens(token) {
         set({ accessToken: token });
       },
-      logout: () =>
+      logout: () =>{
         set({
           accessToken: null,
           user: null,
-        }),
+        })
+        notifySuccess("logout successfully");
+      }
+       ,
 
       checkAuth: async () => {
         try {

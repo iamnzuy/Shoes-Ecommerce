@@ -8,7 +8,7 @@ function Home() {
   const {fetchProducts} = useProductStore();
   useEffect(() => async () => {
     await fetchProducts();
-  });
+  },[]);
 
   return (
     <div>
