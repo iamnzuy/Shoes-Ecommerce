@@ -19,25 +19,38 @@ function OrderList(orders) {
             key={index}
             className="mb-8 border border-gray-400 p-2 px-4 rounded-xl"
           >
-            <p className="font-semibold">Order ID: {index + 1}</p>
-            <p className="font-semibold mt-1">
-              Status: <span className="text-green-500">Delivered</span>
-            </p>
+            <div className="flex justify-between items-center">
+              <p className="font-semibold">Order ID: {index + 1}</p>
+              <p className="font-semibold">By user: {order.user.username}</p>
+            </div>
+            <div className="flex justify-between items-center">
+              <p className="font-semibold mt-1">
+                Status: <span className="text-green-500">Delivered</span>
+              </p>
+              <p className="font-semibold">Email: {order.user.email}</p>
+            </div>
+
             {order.items.map((item, index) => {
               // product card
               return (
-                <>
+                <div key={index}>
                   <hr className="border-gray-400 mt-2 w-full" />
                   <div
                     key={index}
                     className="flex justify-between items-center my-1 px-16"
                   >
-                    <img src={item.product.image}></img>
-                    <p>{item.product.name}</p>
-                    <p>x{item.quantity}</p>
-                    <p>{formatMoney(item.product.price * item.quantity)}</p>
+                    {item.product !== null ? (
+                      <>
+                        <img src={item.product.image}></img>
+                        <p>{item.product.name}</p>
+                        <p>x{item.quantity}</p>
+                        <p>{formatMoney(item.quantity * item.product.price)}</p>
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </div>
-                </>
+                </div>
               );
             })}
             <p className="font-bold mt-2">
@@ -55,7 +68,7 @@ function Order() {
   useEffect(() => {
     async function fetchOrder() {
       try {
-        const response = await axiosInstance.get("/order");
+        const response = await axiosInstance.get("/order/all");
         setOrders(response.data);
       } catch (error) {
         console.error(error);
