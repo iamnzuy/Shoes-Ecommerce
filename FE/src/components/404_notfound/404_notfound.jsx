@@ -15,17 +15,19 @@ function NotFound() {
                         <h1>Something is missing</h1>
                         <p>The page you looking for is not found.</p>
                         <button id="go-home-btn">
-                            <div className="row-flex-container-100">
-                                <a href="/">Go to home</a>
-                            </div>
+                            <a href="/">
+                                <div className="row-flex-container">
+                                    Go to home
+                                </div>
+                            </a>
                         </button>
                         <p id="or">- OR -</p>
                         <div id="dosomething">
-                            <div className="row-flex-container">
+                            <button className="row-flex-container">
                                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
                                     Do something fun
                                 </a>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ function ProductCard(props) {
   return (
     <Link
       to={`/products/${props.id}`}
-      className={`flex flex-col items-center mx-12  ${
+      className={`flex flex-col items-center mx-8  ${
         props.full ? "w-full" : "w-fit"
       }  group no-underline text-gray-700`}
     >
