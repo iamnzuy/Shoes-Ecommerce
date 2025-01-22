@@ -110,8 +110,9 @@
     width: 16%;
 }
 
-#dosomething a {
-    transition: .2s;
+#dosomething button {
+    transition: 0.5s;
+    width: 100%;
     display:  none;
 }
 
@@ -120,7 +121,7 @@
     background-color: var(--primary-color);
     color: #fff;
     padding: 10px 20px;
-    a {
+    button {
         transition: 6s;
         z-index: inherit;
         color: var(--secondary-color);

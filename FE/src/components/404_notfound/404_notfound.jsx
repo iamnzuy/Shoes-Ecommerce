@@ -27,11 +27,11 @@ function NotFound () {
                             - OR -
                         </p>
                         <div id="dosomething">
-                            <div className="row-flex-container">
+                            <button className="row-flex-container">
                                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
                                     Do something fun
                                 </a>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
