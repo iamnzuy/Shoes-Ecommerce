@@ -62,7 +62,28 @@ export default function RegisterPage() {
         registerUser({username: form.username,email: form.email,password: form.password},navigate)
     } 
   };
+  const showPassword =() =>
+    {
+        if ( document.getElementById('password').type === "password")
+        {
+            document.getElementById('password').type = "text";
+        }
+        else{
+            document.getElementById('password').type = "password";
+        }
+    }
 
+    const showConfirmPassword =() =>
+      {
+          if ( document.getElementById('confirmpassword').type === "password")
+          {
+              document.getElementById('confirmpassword').type = "text";
+          }
+          else{
+              document.getElementById('confirmpassword').type = "password";
+          }
+  
+      }
   return (
     <div className="main flex justify-center items-center min-h-screen bg-gray-100">
     <form
@@ -109,6 +130,11 @@ export default function RegisterPage() {
             className="mb-4 w-full h-12 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             onChange={handleChange}
         />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" onClick={showPassword}>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        </svg>
+
         {error.password && (
             <p className="text-red-500 text-sm mb-2">{error.password}</p>
         )}
@@ -123,6 +149,11 @@ export default function RegisterPage() {
             className="mb-4 w-full h-12 p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             onChange={handleChange}
         />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" onClick={showConfirmPassword}>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        </svg>
+
         {error.confirmpassword && (
             <p className="text-red-500 text-sm mb-2">{error.confirmpassword}</p>
         )}

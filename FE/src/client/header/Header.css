@@ -1,3 +1,10 @@
+:root {
+    --primary-color: #111;
+    --secondary-color: #fff;
+    --tertiary-color: #f84814;
+}
+
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -9,4 +16,9 @@
 
 .dropdown {
     display: inline-block;
+}
+
+.linkBase:hover, .linkActive:hover {
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);
 }

@@ -9,12 +9,10 @@ function NotFound () {
                     <div id="error-contents" className="col-flex-container">
                         <div id="main-text">
                             <div className="row-flex-container">
-                                4<div id="bracket">{'{}'}</div>4
+                                4<div id="bracket">{"{}"}</div>4
                             </div>
                         </div>
-                        <h1>
-                            Something is missing
-                        </h1>
+                        <h1>Something is missing</h1>
                         <p>The page you looking for is not found.</p>
                         <button id="go-home-btn">
                             <Link to={'/'} className="row-flex-container-100">
