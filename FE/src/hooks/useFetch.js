@@ -3,7 +3,7 @@ import axiosInstance from '../utils/axios';
 import { notifyError } from '../utils/toast';
 
 function useFetch(url) {
-    let [isLoading,setIsLoading]=useState(false)
+    let [isLoading,setIsLoading]=useState(true)
     let [data,setData]=useState(null)
     useEffect(()=>{
          setIsLoading(true);

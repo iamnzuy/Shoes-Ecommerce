@@ -6,6 +6,7 @@ import Contact from "../client/contact/Contact.jsx";
 import Cart from "../client/cart/cart.jsx";
 import NotFound from "../components/404_notfound/404_notfound.jsx";
 import Order from "../client/order/order.jsx";
+import { ProtectedRoute } from "./ProtectedRoute.jsx";
 
 const clientRoutes = {
   path: "/",
@@ -17,11 +18,11 @@ const clientRoutes = {
     { path: "contact", element: <Contact /> },
     {
       path: "cart",
-      element: <Cart />,
+      element: <ProtectedRoute><Cart /></ProtectedRoute>,
     },
     {
       path: "order",
-      element: <Order />,
+      element: <ProtectedRoute><Order /></ProtectedRoute>,
     },
     {
       path: "*",

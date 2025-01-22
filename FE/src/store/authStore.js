@@ -66,7 +66,7 @@ const useAuthStore = create(
         try {
           set({ ischecking: true });
           let response = await axiosInstance.get("/auth/checkauth");
-          console.log(response);
+          // console.log(response);
           set({ user: response.data });
         } catch (error) {
           set({ user: null });
