@@ -125,10 +125,14 @@ function Show() {
     };
 
     initializeFilters();
-  }, []);
-
+  }, [products]);
+  let timer;
   const handleInputChange = (e) => {
-    setSearchItem(e.target.value);
+    let text=e.target.value
+    clearTimeout(timer)
+    timer=setTimeout(()=>{
+      setSearchItem(text);
+    },500)
   };
 
   const updateSearchParams = (newCategoryState, newBrandState) => {
@@ -207,7 +211,7 @@ function Show() {
             placeholder="Type to search"
             type="text"
             onChange={handleInputChange}
-            value={searchItem}
+            // value={searchItem}
           />
         </div>
         
