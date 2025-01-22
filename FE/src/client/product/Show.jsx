@@ -1,7 +1,6 @@
 import useProductStore from "../../store/productStore";
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import "./Show.css";
 import { useSearchParams } from "react-router";
 
 const categories = [
@@ -20,16 +19,16 @@ function Filter({
   setSelectedBrand,
 }) {
   return (
-    <div className="w-1/2 fixed" id="categories">
+    <div className="w-1/2 fixed">
       <div className="mb-4">
-        <h1 className="font-bold">Category</h1>
-        <div className="flex flex-col w-32" id="menu-items">
+        <h1 className="font-bold">Category:</h1>
+        <div className="flex flex-col w-32">
           {categories.map((category, index) => {
             return (
               <button
                 className={
                   selectedCategory === category
-                    ? "bg-gray font-semibold"
+                    ? "bg-gray-300 font-semibold"
                     : ""
                 }
                 key={index}
@@ -46,13 +45,13 @@ function Filter({
         </div>
       </div>
       <div>
-        <h1 className="font-bold">Brand</h1>
-        <div className="flex flex-col  w-32" id="menu-items">
+        <h1 className="font-bold">Brand:</h1>
+        <div className="flex flex-col  w-32">
           {brands.map((brand, index) => {
             return (
               <button
                 className={
-                  selectedBrand === brand ? "bg-gray font-semibold" : ""
+                  selectedBrand === brand ? "bg-gray-300 font-semibold" : ""
                 }
                 key={index}
                 onClick={() =>
@@ -200,26 +199,6 @@ function Show() {
   });
 
   return (
-    <div>
-      <Filter
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        selectedBrand={selectedBrand}
-        setSelectedBrand={setSelectedBrand}
-      />
-      <div className="flex flex-row flex-wrap gap-2 justify-between my-12" id="products-container">
-        <div className="products-container">
-          {filteredProducts.map((product, index) => (
-            <ProductCard
-              key={index}
-              name={product.name}
-              image={product.image}
-              price={product.price}
-              id={product._id}
-            />
-          ))}
-        </div>
-=======
     <div className="box-border">
       <div className="flex flex-col content-center justify-center">
         <div className="mx-8">
