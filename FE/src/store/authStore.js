@@ -3,6 +3,7 @@ import { persist } from "zustand/middleware";
 import axiosInstance from "../utils/axios";
 import axios from "axios";
 import { notifyError, notifySuccess } from "../utils/toast";
+import cartStore from "./cartStore";
 const useAuthStore = create(
   persist(
     (set, get) => ({
@@ -56,6 +57,7 @@ const useAuthStore = create(
           accessToken: null,
           user: null,
         })
+        cartStore.getState().clearCart()
         notifySuccess("logout successfully");
       }
        ,

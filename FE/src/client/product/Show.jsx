@@ -250,7 +250,7 @@ function Show() {
         </div>
       </div>
 
-      <div className="flex flex-row flex-wrap gap-4 justify-between my-12">
+      <div className="grid grid-cols-3 gap-4 w-[90%] justify-between my-12 mx-auto">
         {filteredProducts.map((product) => (
           <ProductCard
             key={product._id}
