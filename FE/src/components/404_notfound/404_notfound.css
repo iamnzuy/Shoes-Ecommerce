@@ -22,7 +22,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 100vw;
 }
 
 
@@ -84,7 +83,6 @@
     font-size: 1.2%;
     border-radius: 0.5vw;
     padding: 10px 20px;
-    width: 16%;
     margin: 20px 0;
 }
 

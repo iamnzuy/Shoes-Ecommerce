@@ -1,6 +1,6 @@
 import React from 'react';
 import './404_notfound.css';
-
+import {Link} from 'react-router'
 function NotFound () {
     return (
         <>
@@ -17,20 +17,11 @@ function NotFound () {
                         </h1>
                         <p>The page you looking for is not found.</p>
                         <button id="go-home-btn">
-                            <div className="row-flex-container-100">
+                            <Link to={'/'} className="row-flex-container-100">
                                 Go to home
-                            </div>
+                            </Link>
                         </button>
-                        <p id="or">
-                            - OR -
-                        </p>
-                        <div id="dosomething">
-                            <div className="row-flex-container">
-                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                                    Do something fun
-                                </a>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
