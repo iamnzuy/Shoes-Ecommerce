@@ -20,9 +20,9 @@ const clientRoutes = {
       element: <Cart />,
     },
     {
-      path: "test",
+      path: "*",
       element: <NotFound />,
-    }
+    },
   ],
 };
 

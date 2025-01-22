@@ -21,12 +21,6 @@ function Header() {
         </div>
         <nav className="flex flex-row">
           <NavLink
-            to="/test"
-            className={({ isActive }) => (isActive ? "linkActive" : "linkBase")}
-          >
-            not found test
-          </NavLink>
-          <NavLink
             to="/"
             className={({ isActive }) => (isActive ? "linkActive" : "linkBase")}
           >
