@@ -7,12 +7,6 @@ const cartStore = create(
     (set,get) => ({
         cart: [],
         totalPrice: 0,
-
-    getCart(payload) {
-        set({cart: payload})
-        get().calculateTotalPrice()
-    },
-
     addToCart(product){ //if item exist: add up quantity, else add new item
         set((state) => {
             const existingItemIndex = state.cart.findIndex(item => item._id === product._id)

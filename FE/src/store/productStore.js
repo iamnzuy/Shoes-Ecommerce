@@ -5,15 +5,18 @@ import axiosInstance from "../utils/axios";
 // store
 const useProductStore = create((set) => ({
   products: [],
+  isLoading: false,
   productToDelete: "",
   fetchProducts: async () => {
     try {
+      set({isLoading: true})
       const response = await axiosInstance.get("/products/all")
       .catch((err) => console.log(err))
       .then((res) => set({products:res.data}));
-      // set({ products: response.data });
     } catch (error) {
       console.error("Error fetching products:", error);
+    } finally{
+      set({isLoading: false})
     }
   },
   setProductToDelete: async (product) => {
@@ -22,6 +25,7 @@ const useProductStore = create((set) => ({
 
   deleteProduct: async (productID) => {
     try {
+      set({isLoading: true})
       const response = await axiosInstance.delete(
         `/products/${productID}`
       );
@@ -31,6 +35,8 @@ const useProductStore = create((set) => ({
     } catch (error) {
       console.error(error);
       notifyError();
+    } finally {
+      set({isLoading: false})
     }
   },
 
@@ -38,6 +44,7 @@ const useProductStore = create((set) => ({
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
+      set({isLoading: true})
       const response = await axiosInstance.post(
         "/products/create",
         formData,
@@ -52,12 +59,15 @@ const useProductStore = create((set) => ({
     } catch (error) {
       console.error(error);
       notifyError(error.response?.data?.message);
+    } finally {
+      set({isLoading: false})
     }
   },
   updateProduct: async (e, id, navigate) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
+      set({isLoading: true})
       const response = await axiosInstance.put(
         "/products/update/" + id,
         formData,
@@ -73,6 +83,8 @@ const useProductStore = create((set) => ({
     } catch (error) {
       console.error(error);
       notifyError();
+    } finally {
+      set({isLoading: false})
     }
   },
 }));

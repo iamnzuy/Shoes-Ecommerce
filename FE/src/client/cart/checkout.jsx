@@ -1,6 +1,7 @@
 import React from "react";
 import axiosInstance from "../../utils/axios";
 import { notifySuccess, notifyError } from "../../utils/toast";
+import cartStore from "../../store/cartStore";
 
 function Checkout({ active, setActive, products, totalPrice }) {
   const extractedProps = products.map((product) => ({
@@ -17,7 +18,7 @@ function Checkout({ active, setActive, products, totalPrice }) {
       .post("/order/place", data)
       .then((response) => {
         notifySuccess("Order placed successfully");
-        console.log(response);
+        cartStore.getState().clearCart();
       })
       .catch((error) => {
         console.log(error);

@@ -4,6 +4,7 @@ import ProductCard from "../product/ProductCard.jsx";
 import Slideshow from "./Slide/Slideshow";
 import ProductSlideshow from "./Slide/ProductSlideshow.jsx";
 import { Link } from "react-router";
+import Loader from "../../components/Loader.jsx";
 
 function BestSeller(props) {
   const products = props.products;
@@ -73,13 +74,14 @@ function ConverseShoes(props) {
 }
 
 function Homepage() {
-  const { fetchProducts, products } = useProductStore();
+  const { fetchProducts, products ,isLoading} = useProductStore();
   useEffect(
     () => async () => {
       await fetchProducts();
     },
     []
   );
+  if (isLoading) return <Loader/>
   return (
     <div>
       <div className="border w-full h-full py-24 pb-32 bg-gray-200">

@@ -3,46 +3,16 @@ import { useNavigate, useParams } from "react-router";
 import Loader from "../../components/Loader";
 import cartStore from "../../store/cartStore";
 import useAuthStore from "../../store/authStore";
-import { toast, ToastContainer } from "react-toastify";
-// import axios from '../axios'
-import axios from "axios";
+import useFetch from "../../hooks/useFetch";
+import { notifyError, notifySuccess } from "../../utils/toast";
 
 function ProductDetail() {
+  const { pid } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  let {data: product,isLoading}=useFetch(`/products/single/${pid}`)
   const user = useAuthStore((state) => state.user);
   const addToCart = cartStore((state) => state.addToCart);
-  const cart = cartStore((state) => state.cart);
   const navigate = useNavigate();
-
-  axios.defaults.baseURL = "http://localhost:5000";
-  const { pid } = useParams();
-
-  const getItem = async () => {
-    const res = await axios.get(`/products/single/${pid}`).catch((error) => {
-      setLoading(false);
-      console.error(error);
-    });
-
-    if (!res.data) {
-      setLoading(false);
-      throw new Error("Product not found");
-    } else {
-      setLoading(false);
-      setProduct(res.data);
-    }
-  };
-
-  const getProducts = async () => {
-    const res = await axios.get("/getProducts").catch((error) => {
-      console.log(error);
-    });
-
-    console.log(res);
-  };
-
   const formatPrice = (price) => {
     return new Intl.NumberFormat("vi-VN").format(price);
   };
@@ -54,8 +24,9 @@ function ProductDetail() {
   const handleAddToCart = (e) => {
     e.preventDefault();
     if (!user) {
-      toast.warn("You have to login to add item to cart!", { autoClose: 3000 });
-      navigate("/login");
+      notifyError("You have to login to add item to cart!");
+       navigate("/login");
+      return
     }
     const item = {
       ...product,
@@ -63,15 +34,10 @@ function ProductDetail() {
     };
 
     addToCart(item);
-
-    toast.success("Add to cart successful", { autoClose: 3000 });
+   notifySuccess("Add to cart successful");
   };
 
-  useEffect(() => {
-    getItem();
-  }, [pid]);
-
-  if (loading) return <Loader />;
+  if (isLoading) return <Loader />;
   if (!product) return <div>Product not found</div>;
 
   return (
@@ -104,11 +70,6 @@ function ProductDetail() {
                 Category: {product.category}
               </h3>
             </div>
-            {/* <div>
-              <h3 className="text-md my-2">
-                Short description: {product.short_description}
-              </h3>
-            </div> */}
             <div>
               <h3 className="mb-2 text-3xl font-bold text-gray-900 my-4 text-wrap">
                 {formatPrice(product.price * quantity)} <span>&#8363;</span>
@@ -140,9 +101,7 @@ function ProductDetail() {
                 >
                   <i className="fa fa-minus"></i>
                 </button>
-                {/* <span className="text-sm text-gray-900 mx-4">
-                  Available: {product.stock}
-                </span> */}
+             
               </div>
               <button
                 type="submit"
@@ -167,7 +126,6 @@ function ProductDetail() {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

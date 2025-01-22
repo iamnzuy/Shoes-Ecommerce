@@ -2,6 +2,7 @@ import useProductStore from "../../store/productStore";
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useSearchParams } from "react-router";
+import Loader from "../../components/Loader";
 
 const categories = [
   "Running shoes",
@@ -71,7 +72,7 @@ function Filter({
 }
 
 function Show() {
-  const { fetchProducts, products } = useProductStore();
+  const { fetchProducts, products ,isLoading} = useProductStore();
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
   const [categoryCheckedState, setCategoryCheckedState] = useState({});
@@ -201,7 +202,7 @@ function Show() {
 
     return matchesSearch && matchesCategory && matchesBrand;
   });
-
+  if (isLoading) return <Loader/>
   return (
     <div className="box-border">
       <div className="flex flex-col content-center justify-center">
