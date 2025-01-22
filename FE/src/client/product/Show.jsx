@@ -1,6 +1,7 @@
 import useProductStore from "../../store/productStore";
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
+import "./Show.css";
 
 const categories = [
   "Running shoes",
@@ -18,16 +19,16 @@ function Filter({
   setSelectedBrand,
 }) {
   return (
-    <div className="w-1/2 fixed">
+    <div className="w-1/2 fixed" id="categories">
       <div className="mb-4">
-        <h1 className="font-bold">Category:</h1>
-        <div className="flex flex-col w-32">
+        <h1 className="font-bold">Category</h1>
+        <div className="flex flex-col w-32" id="menu-items">
           {categories.map((category, index) => {
             return (
               <button
                 className={
                   selectedCategory === category
-                    ? "bg-gray-300 font-semibold"
+                    ? "bg-gray font-semibold"
                     : ""
                 }
                 key={index}
@@ -44,13 +45,13 @@ function Filter({
         </div>
       </div>
       <div>
-        <h1 className="font-bold">Brand:</h1>
-        <div className="flex flex-col  w-32">
+        <h1 className="font-bold">Brand</h1>
+        <div className="flex flex-col  w-32" id="menu-items">
           {brands.map((brand, index) => {
             return (
               <button
                 className={
-                  selectedBrand === brand ? "bg-gray-300 font-semibold" : ""
+                  selectedBrand === brand ? "bg-gray font-semibold" : ""
                 }
                 key={index}
                 onClick={() =>
@@ -97,16 +98,18 @@ function Show() {
         selectedBrand={selectedBrand}
         setSelectedBrand={setSelectedBrand}
       />
-      <div className="flex flex-row flex-wrap gap-2 justify-between my-12 border ml-32">
-        {filteredProducts.map((product, index) => (
-          <ProductCard
-            key={index}
-            name={product.name}
-            image={product.image}
-            price={product.price}
-            id={product._id}
-          />
-        ))}
+      <div className="flex flex-row flex-wrap gap-2 justify-between my-12" id="products-container">
+        <div className="products-container">
+          {filteredProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              name={product.name}
+              image={product.image}
+              price={product.price}
+              id={product._id}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
