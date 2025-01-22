@@ -88,6 +88,11 @@
     margin: 20px 0;
 }
 
+#go-home-btn:hover {
+    transition: 0.2s;
+    background-color: #ffb247;
+}
+
 #or {
     padding: 0 20px;   
 }
