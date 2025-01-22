@@ -16,7 +16,7 @@ function NotFound () {
                             Something is missing
                         </h1>
                         <p>The page you looking for is not found.</p>
-                        <button id="cart-checkout-btn">
+                        <button id="go-home-btn">
                             <div className="row-flex-container-100">
                                 Go to home
                             </div>
