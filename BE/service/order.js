@@ -9,6 +9,6 @@ export async function getOrders(id) {
     return orders;
 }
 export async function getAllOrders() {
-    let orders=await orderModel.find({}).populate({path: 'user',select: '-password -__v'})
+    let orders=await orderModel.find({}).populate({path: 'user',select: '-password -__v'}).populate('items.product')
     return orders;
 }
