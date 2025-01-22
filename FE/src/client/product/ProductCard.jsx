@@ -1,11 +1,10 @@
 import { Link } from "react-router";
 
 function ProductCard(props) {
- 
   return (
     <Link
       to={`/products/${props.id}`}
-      className={`flex flex-col items-center mx-24  ${
+      className={`flex flex-col items-center mx-12  ${
         props.full ? "w-full" : "w-fit"
       }  group no-underline text-gray-700`}
     >
