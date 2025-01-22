@@ -1,8 +1,32 @@
-import React from 'react';
+import React from "react";
+import axiosInstance from "../../utils/axios";
+import { notifySuccess, notifyError } from "../../utils/toast";
 
-function Checkout({ active, setActive }) {
+function Checkout({ active, setActive, products, totalPrice }) {
+  const extractedProps = products.map((product) => ({
+    product: product._id,
+    quantity: product.quantity,
+  }));
+
+  const handleCheckout = () => {
+    const data = {
+      items: JSON.stringify([...extractedProps]),
+      totalPrice: totalPrice,
+    };
+    axiosInstance
+      .post("/order/place", data)
+      .then((response) => {
+        notifySuccess("Order placed successfully");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        notifyError("Order failed");
+      });
+  };
+
   return (
-    <div className={`${active ? 'active' : ''} cart-payment`}>
+    <div className={`${active ? "active" : ""} cart-payment`}>
       <div className="cart-payment-container">
         <div className="cart-payment-container-hr">
           <div className="cart-payment-info">
@@ -46,7 +70,9 @@ function Checkout({ active, setActive }) {
             </div>
             <div className="cart-payment-info-subheader-exp-container">
               <div className="cart-payment-info-subheader-exp">
-                <div id="exp" className="cart-payment-info-subheader">Expiration date</div>
+                <div id="exp" className="cart-payment-info-subheader">
+                  Expiration date
+                </div>
                 <div id="cvc" className="cart-payment-info-subheader">
                   CVC
                 </div>
@@ -55,10 +81,20 @@ function Checkout({ active, setActive }) {
             <div className="cart-payment-info-subheader-exp-container">
               <div className="cart-payment-info-subheader-exp">
                 <div className="input-group">
-                  <input type="text" name="username" id="exp-input" placeholder="" />
+                  <input
+                    type="text"
+                    name="username"
+                    id="exp-input"
+                    placeholder=""
+                  />
                 </div>
                 <div className="input-group">
-                  <input type="text" name="username" id="cvc-input" placeholder="" />
+                  <input
+                    type="text"
+                    name="username"
+                    id="cvc-input"
+                    placeholder=""
+                  />
                 </div>
               </div>
             </div>
@@ -67,7 +103,7 @@ function Checkout({ active, setActive }) {
               <button
                 id="cart-payment-checkout-btn"
                 onClick={() => {
-                  alert('Checkout success');
+                  handleCheckout();
                 }}
               >
                 <div>Checkout</div>

@@ -3,6 +3,73 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useSearchParams } from "react-router";
 
+const categories = [
+  "Running shoes",
+  "Basketball shoes",
+  "Soccer shoes",
+  "Walking shoes",
+];
+
+const brands = ["Nike", "Adidas", "Puma", "Converse"];
+
+function Filter({
+  selectedCategory,
+  setSelectedCategory,
+  selectedBrand,
+  setSelectedBrand,
+}) {
+  return (
+    <div className="w-1/2 fixed">
+      <div className="mb-4">
+        <h1 className="font-bold">Category:</h1>
+        <div className="flex flex-col w-32">
+          {categories.map((category, index) => {
+            return (
+              <button
+                className={
+                  selectedCategory === category
+                    ? "bg-gray-300 font-semibold"
+                    : ""
+                }
+                key={index}
+                onClick={() =>
+                  selectedCategory === category
+                    ? setSelectedCategory("")
+                    : setSelectedCategory(category)
+                }
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div>
+        <h1 className="font-bold">Brand:</h1>
+        <div className="flex flex-col  w-32">
+          {brands.map((brand, index) => {
+            return (
+              <button
+                className={
+                  selectedBrand === brand ? "bg-gray-300 font-semibold" : ""
+                }
+                key={index}
+                onClick={() =>
+                  selectedBrand === brand
+                    ? setSelectedBrand("")
+                    : setSelectedBrand(brand)
+                }
+              >
+                {brand}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Show() {
   const { fetchProducts, products } = useProductStore();
   const [categories, setCategories] = useState([]);

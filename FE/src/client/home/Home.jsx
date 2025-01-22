@@ -5,15 +5,17 @@ import useProductStore from "../../store/productStore";
 import BreadCrumb from "../Header/BreadCrumb";
 
 function Home() {
-  const {fetchProducts} = useProductStore();
-  useEffect(() => async () => {
-    await fetchProducts();
-  },[]);
+  const { fetchProducts } = useProductStore();
+  useEffect(
+    () => async () => {
+      await fetchProducts();
+    },
+    []
+  );
 
   return (
     <div>
       <Header />
-      <BreadCrumb />
       <Outlet />
     </div>
   );

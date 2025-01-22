@@ -16,6 +16,7 @@ let orderSchema = new mongoose.Schema(
     ],
     user: {
       type: mongoose.Types.ObjectId,
+      ref: "Users",
       required: true,
     },
     totalPrice: {

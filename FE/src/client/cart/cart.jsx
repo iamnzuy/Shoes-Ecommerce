@@ -127,7 +127,12 @@ function Cart() {
           </div>
         </div>
       </div>
-      <Checkout active={active} setActive={setActive} />
+      <Checkout
+        active={active}
+        setActive={setActive}
+        products={products}
+        totalPrice={totalPrice}
+      />
     </>
   );
 }
