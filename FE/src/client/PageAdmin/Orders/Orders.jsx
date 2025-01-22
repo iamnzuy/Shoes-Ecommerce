@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../utils/axios";
+import useAuthStore from "../../../store/authStore";
 
 function OrderList(orders) {
   const formatMoney = (money) => {
@@ -8,12 +9,13 @@ function OrderList(orders) {
       currency: "VND",
     }).format(money);
   };
-
+  let {user}=useAuthStore()
   console.log(orders.orders);
   return (
     <div>
       {/* order card */}
       {orders.orders.map((order, index) => {
+       
         return (
           <div
             key={index}
@@ -21,13 +23,13 @@ function OrderList(orders) {
           >
             <div className="flex justify-between items-center">
               <p className="font-semibold">Order ID: {index + 1}</p>
-              <p className="font-semibold">By user: {order.user.username}</p>
+              <p className="font-semibold">By user: {order.user.username==user.username ? 'me' : order.user.username}</p>
             </div>
             <div className="flex justify-between items-center">
               <p className="font-semibold mt-1">
                 Status: <span className="text-green-500">Delivered</span>
               </p>
-              <p className="font-semibold">Email: {order.user.email}</p>
+              <p className="font-semibold">Date: {new Date(order.createdAt).toLocaleDateString()}</p>
             </div>
 
             {order.items.map((item, index) => {

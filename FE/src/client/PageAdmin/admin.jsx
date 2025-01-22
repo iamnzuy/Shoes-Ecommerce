@@ -4,11 +4,11 @@ import { Outlet } from "react-router";
 
 function adminPage() {
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col bg-gray-50">
       <NavBar />
-      <div className="flex flex-row h-full">
+      <div className="flex flex-row items-start h-[calc(100vh-56px)]">
         <SideBar />
-        <div className="w-full h-fit shadow-inner">
+        <div className="w-full h-full hide-scrollbar overflow-y-auto">
           <Outlet />
         </div>
       </div>
