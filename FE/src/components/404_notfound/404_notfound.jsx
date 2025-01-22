@@ -17,9 +17,11 @@ function NotFound () {
                         </h1>
                         <p>The page you looking for is not found.</p>
                         <button id="go-home-btn">
-                            <div className="row-flex-container">
-                                Go to home
-                            </div>
+                            <a href="/">
+                                <div className="row-flex-container">
+                                    Go to home
+                                </div>
+                            </a>
                         </button>
                         <p id="or">
                             - OR -
