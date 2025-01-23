@@ -1,231 +1,106 @@
+import { useEffect, useState, useMemo, useCallback } from "react";
 import useProductStore from "../../store/productStore";
-import { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
 import { useSearchParams } from "react-router";
+import ProductCard from "./ProductCard";
 import Loader from "../../components/Loader";
 
-const categories = [
-  "Running shoes",
-  "Basketball shoes",
-  "Soccer shoes",
-  "Walking shoes",
-];
-
-const brands = ["Nike", "Adidas", "Puma", "Converse"];
-
-function Filter({
-  selectedCategory,
-  setSelectedCategory,
-  selectedBrand,
-  setSelectedBrand,
-}) {
-  return (
-    <div className="w-1/2 fixed">
-      <div className="mb-4">
-        <h1 className="font-bold">Category:</h1>
-        <div className="flex flex-col w-32">
-          {categories.map((category, index) => {
-            return (
-              <button
-                className={
-                  selectedCategory === category
-                    ? "bg-gray-300 font-semibold"
-                    : ""
-                }
-                key={index}
-                onClick={() =>
-                  selectedCategory === category
-                    ? setSelectedCategory("")
-                    : setSelectedCategory(category)
-                }
-              >
-                {category}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      <div>
-        <h1 className="font-bold">Brand:</h1>
-        <div className="flex flex-col  w-32">
-          {brands.map((brand, index) => {
-            return (
-              <button
-                className={
-                  selectedBrand === brand ? "bg-gray-300 font-semibold" : ""
-                }
-                key={index}
-                onClick={() =>
-                  selectedBrand === brand
-                    ? setSelectedBrand("")
-                    : setSelectedBrand(brand)
-                }
-              >
-                {brand}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function Show() {
-  const { fetchProducts, products ,isLoading} = useProductStore();
-  const [categories, setCategories] = useState([]);
-  const [brands, setBrands] = useState([]);
-  const [categoryCheckedState, setCategoryCheckedState] = useState({});
-  const [brandCheckedState, setBrandCheckedState] = useState({});
-  const [searchItem, setSearchItem] = useState("");
+  const { fetchProducts, products, isLoading } = useProductStore();
   const [searchParams, setSearchParams] = useSearchParams();
-
- 
-  useEffect(() => {
-    const initializeFilters = async () => {
-      await fetchProducts();
-      
-      const diffCategories = [...new Set(products.map(p => p.category))].sort();
-      const diffBrands = [...new Set(products.map(p => p.brand))].sort();
-      
-      setCategories(diffCategories);
-      setBrands(diffBrands);
-      
-      const initCategoryState = Object.fromEntries(
-        diffCategories.map(category => [category, false])
-      );
-      const initBrandState = Object.fromEntries(
-        diffBrands.map(brand => [brand, false])
-      );
-
-      setCategoryCheckedState(initCategoryState);
-      setBrandCheckedState(initBrandState);
-
-      const categoryParams = searchParams.getAll("category");
-      const brandParams = searchParams.getAll("brand");
-
-      if (categoryParams.length > 0 || brandParams.length > 0) {
-        const updatedCategoryState = { ...initCategoryState };
-        const updatedBrandState = { ...initBrandState };
-
-        categoryParams.forEach(category => {
-          if (diffCategories.includes(category)) {
-            updatedCategoryState[category] = true;
-          }
-        });
-
-        brandParams.forEach(brand => {
-          if (diffBrands.includes(brand)) {
-            updatedBrandState[brand] = true;
-          }
-        });
-
-        setCategoryCheckedState(updatedCategoryState);
-        setBrandCheckedState(updatedBrandState);
-      }
-    };
-
-    initializeFilters();
-  }, [products]);
-  let timer;
-  const handleInputChange = (e) => {
-    let text=e.target.value
-    clearTimeout(timer)
-    timer=setTimeout(()=>{
-      setSearchItem(text);
-    },500)
-  };
-
-  const updateSearchParams = (newCategoryState, newBrandState) => {
-    const params = new URLSearchParams();
-    
-    Object.entries(newCategoryState).forEach(([category, isChecked]) => {
-      if (isChecked) {
-        params.append("category", category);
-      }
-    });
-
-    Object.entries(newBrandState).forEach(([brand, isChecked]) => {
-      if (isChecked) {
-        params.append("brand", brand);
-      }
-    });
-
-    if (searchItem) {
-      params.set("search", searchItem);
-    }
-
-    setSearchParams(params, {
-      preventScrollReset: true,
-    });
-  };
-
-  const handleCategoryChange = (category) => {
-    const updatedState = {
-      ...categoryCheckedState,
-      [category]: !categoryCheckedState[category]
-    };
-    setCategoryCheckedState(updatedState);
-    updateSearchParams(updatedState, brandCheckedState);
-  };
-
-  const handleBrandChange = (brand) => {
-    const updatedState = {
-      ...brandCheckedState,
-      [brand]: !brandCheckedState[brand]
-    };
-    setBrandCheckedState(updatedState);
-    updateSearchParams(categoryCheckedState, updatedState);
-  };
-
- 
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name
-      .toLowerCase()
-      .includes(searchItem.toLowerCase());
-    
-    const selectedCategories = Object.entries(categoryCheckedState)
-      .filter(([_, isChecked]) => isChecked)
-      .map(([category]) => category);
-
-    const selectedBrands = Object.entries(brandCheckedState)
-      .filter(([_, isChecked]) => isChecked)
-      .map(([brand]) => brand);
-    
-    const matchesCategory = 
-      selectedCategories.length === 0 || 
-      selectedCategories.includes(product.category);
-    
-    const matchesBrand = 
-      selectedBrands.length === 0 || 
-      selectedBrands.includes(product.brand);
-
-    return matchesSearch && matchesCategory && matchesBrand;
+  const [filters, setFilters] = useState({
+    categories: [],
+    brands: [],
+    categoryChecks: {},
+    brandChecks: {},
+    searchText: ""
   });
-  if (isLoading) return <Loader/>
+
+  // optimize by memorizing
+  const { uniqueCategories, uniqueBrands } = useMemo(() => ({
+    uniqueCategories: [...new Set(products.map(p => p.category))].sort(),
+    uniqueBrands: [...new Set(products.map(p => p.brand))].sort()
+  }), [products]);
+
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchesSearch = product.name
+        .toLowerCase()
+        .includes(filters.searchText.toLowerCase());
+      
+      const selectedCategories = Object.entries(filters.categoryChecks)
+        .filter(([_, isChecked]) => isChecked)
+        .map(([category]) => category);
+
+      const selectedBrands = Object.entries(filters.brandChecks)
+        .filter(([_, isChecked]) => isChecked)
+        .map(([brand]) => brand);
+      
+      return matchesSearch && 
+        (selectedCategories.length === 0 || selectedCategories.includes(product.category)) &&
+        (selectedBrands.length === 0 || selectedBrands.includes(product.brand));
+    });
+  }, [products, filters]);
+
+  const handleSearch = useCallback((e) => {
+    const text = e.target.value;
+    setFilters(prev => ({ ...prev, searchText: text }));
+    
+    const params = new URLSearchParams(searchParams);
+    if (text) params.set("search", text);
+    else params.delete("search");
+    setSearchParams(params);
+  }, [searchParams, setSearchParams]);
+
+  const handleFilterChange = useCallback((type, item) => {
+    setFilters(prev => {
+      const checks = type === 'category' ? 'categoryChecks' : 'brandChecks';
+      const newChecks = {
+        ...prev[checks],
+        [item]: !prev[checks][item]
+      };
+      
+      const params = new URLSearchParams();
+      Object.entries(newChecks)
+        .filter(([_, isChecked]) => isChecked)
+        .forEach(([value]) => params.append(type, value));
+      
+      Object.entries(prev[type === 'category' ? 'brandChecks' : 'categoryChecks'])
+        .filter(([_, isChecked]) => isChecked)
+        .forEach(([value]) => params.append(type === 'category' ? 'brand' : 'category', value));
+      
+      if (prev.searchText) params.set("search", prev.searchText);
+      setSearchParams(params);
+
+      return { ...prev, [checks]: newChecks };
+    });
+  }, [setSearchParams]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
+  if (isLoading) return <Loader />;
+
   return (
-    <div className="box-border">
+    <div className="box-border my-2">
       <div className="flex flex-col content-center justify-center">
-        <div className="mx-8">
-          <input
-            className="p-2 border rounded w-full"
-            placeholder="Type to search"
-            type="text"
-            onChange={handleInputChange}
-            // value={searchItem}
-          />
-        </div>
+        <input
+          className="p-2 border rounded w-full mx-8"
+          placeholder="Type to search"
+          type="text"
+          onChange={handleSearch}
+        />
         
         <div className="mx-4 mt-4 w-full">
-          <h3 className="font-medium mb-2">Categories ({categories.length})</h3>
+          <h3 className="font-medium mb-2">Categories ({uniqueCategories.length})</h3>
           <div className="flex flex-wrap gap-4">
-            {categories.map((category) => (
+            {uniqueCategories.map((category, index, key) => (
               <div key={category} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   id={`category-${category}`}
-                  checked={categoryCheckedState[category] || false}
-                  onChange={() => handleCategoryChange(category)}
+                  checked={filters.categoryChecks[category] || false}
+                  onChange={() => handleFilterChange('category', category)}
                   className="w-4 h-4"
                 />
                 <label htmlFor={`category-${category}`}>{category}</label>
@@ -233,15 +108,15 @@ function Show() {
             ))}
           </div>
 
-          <h3 className="font-medium mb-2 mt-4">Brands ({brands.length})</h3>
+          <h3 className="font-medium mb-2 mt-4">Brands ({uniqueBrands.length})</h3>
           <div className="flex flex-wrap gap-4">
-            {brands.map((brand) => (
+            {uniqueBrands.map((brand) => (
               <div key={brand} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   id={`brand-${brand}`}
-                  checked={brandCheckedState[brand] || false}
-                  onChange={() => handleBrandChange(brand)}
+                  checked={filters.brandChecks[brand] || false}
+                  onChange={() => handleFilterChange('brand', brand)}
                   className="w-4 h-4"
                 />
                 <label htmlFor={`brand-${brand}`}>{brand}</label>
