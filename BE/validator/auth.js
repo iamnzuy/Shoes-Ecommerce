@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import {userModel} from '../models/user.js'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 export async function checkSignUp(req,res,next) {
   let schema=Joi.object({
      username: Joi.string().min(4).max(30).required(),
