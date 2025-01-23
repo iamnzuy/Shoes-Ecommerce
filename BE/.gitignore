@@ -1,1 +1,29 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
 .env
+
+# Build output
+/dist
+/build
+
+# Dependency directories
+jspm_packages/
+
+# Optional: local development environments (if using VS Code)
+.vscode/
+
+# Mac-specific files
+.DS_Store
+
+# Windows-specific files
+Thumbs.db
+
+# Other
+*.swp
