@@ -14,6 +14,8 @@ function Cart() {
   const cart = cartStore((state) => state.cart);
   const [active, setActive] = useState(false);
 
+  console.log(length(products));
+
   return (
     <>
       <h2 className="cart-title">My cart</h2>
