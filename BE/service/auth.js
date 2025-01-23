@@ -1,5 +1,5 @@
 import { userModel } from "../models/user.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken.js";
 import generateOTP from "../utils/generateOTP.js";
 import {transporter} from '../utils/nodemailer.js'
@@ -10,7 +10,6 @@ export async function addingUser({ password, ...others }) {
   let user = await new userModel({ password: hasedPassword, ...others }).save();
   return user._doc;
 }
-
 export function handleLogin(user, res) {
   let { accessToken, refreshToken } = generateToken(user);
   res.cookie("refreshToken",refreshToken,{
