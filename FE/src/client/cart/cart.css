@@ -14,6 +14,37 @@ hr {
     width: 68vw;
 }
 
+.row-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-flex-container-100 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.col-flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-flex-container-80 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+
 .cart-title {
     display: flex;
     flex-direction: column;
@@ -350,4 +381,43 @@ input[type="radio"] {
 
 #exp-input {
     margin-left: 2vw;
+}
+
+#cart-icon {
+    width: 70%;
+}
+
+#empty_title {
+    font-size: 2vw;
+    font-weight: bold;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+#empty_content {
+    font-size: 1.3vw;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+#empty-btn {
+    transition: 0.2s;
+    background-color: var(--tertiary-color);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1vh 2vw;
+}
+
+#empty-btn a {
+    font-size: 1.1vw;
+    width: 100%;
+}
+
+#empty-btn:hover {
+    transition: 0.2s;
+    background-color: #ffb247;
 }
